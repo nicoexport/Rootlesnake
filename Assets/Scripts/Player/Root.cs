@@ -5,15 +5,23 @@ using UnityEngine;
 namespace Rootlesnake.Player {
     [Serializable]
     sealed class Root {
+        public event Action onUpdatePoints;
 
         [SerializeField]
-        public int angle = 0;
+        public int angle = 180;
         int previousAngle = 0;
 
         [SerializeField]
         public float speed = 1;
         [SerializeField]
         List<Vector3> m_points = new();
+
+        public Vector2 intendedDirection {
+            set {
+                angle = Mathf.RoundToInt(Vector2.SignedAngle(Vector2.up, value));
+            }
+        }
+
         public IReadOnlyCollection<Vector3> points => m_points;
         public Vector3 lastPosition {
             get => m_points[^1];
@@ -35,6 +43,7 @@ namespace Rootlesnake.Player {
         public void Reset(Vector3 position) {
             m_points.Clear();
             m_points.Add(position);
+            previousAngle = angle - 1;
         }
 
         public void Update(float deltaTime) {
@@ -45,6 +54,7 @@ namespace Rootlesnake.Player {
                 m_points.Add(lastPosition + motion);
                 previousAngle = angle;
             }
+            onUpdatePoints?.Invoke();
         }
     }
 }
