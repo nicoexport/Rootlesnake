@@ -26,6 +26,120 @@ namespace Rootlesnake.Input
     ""name"": ""Controls"",
     ""maps"": [
         {
+            ""name"": ""Root"",
+            ""id"": ""f1f108cc-c1ef-45ac-878d-67eb51245c30"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""9bfc5491-099c-4589-aa34-3718b1dda655"",
+                    ""expectedControlType"": ""Stick"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""1ac84d3e-1eba-455c-bae0-aa792806da7b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""49946645-9f71-49f6-9cd2-16012888ab24"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""781804d7-928c-4abf-97cb-ce83702b340f"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""8fd99e9a-4139-4951-83ce-839324225aac"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""72590376-ab4e-4e4c-8fd2-ca5848d538cd"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""542b2c46-245b-437c-b222-ddb8d9484520"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""0f39e184-a506-438d-ad08-3170719021cc"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6a39e152-53c4-48fa-af40-be2687a0e56e"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""44595eeb-a53c-4681-8e62-07bda5f05ee4"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
             ""name"": ""Debug"",
             ""id"": ""4b20f42b-4a7f-421b-ae63-3cef212f4d8b"",
             ""actions"": [
@@ -276,6 +390,10 @@ namespace Rootlesnake.Input
     ],
     ""controlSchemes"": []
 }");
+            // Root
+            m_Root = asset.FindActionMap("Root", throwIfNotFound: true);
+            m_Root_Move = m_Root.FindAction("Move", throwIfNotFound: true);
+            m_Root_Interact = m_Root.FindAction("Interact", throwIfNotFound: true);
             // Debug
             m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
             m_Debug_F1 = m_Debug.FindAction("F1", throwIfNotFound: true);
@@ -345,6 +463,47 @@ namespace Rootlesnake.Input
         {
             return asset.FindBinding(bindingMask, out action);
         }
+
+        // Root
+        private readonly InputActionMap m_Root;
+        private IRootActions m_RootActionsCallbackInterface;
+        private readonly InputAction m_Root_Move;
+        private readonly InputAction m_Root_Interact;
+        public struct RootActions
+        {
+            private @Controls m_Wrapper;
+            public RootActions(@Controls wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Move => m_Wrapper.m_Root_Move;
+            public InputAction @Interact => m_Wrapper.m_Root_Interact;
+            public InputActionMap Get() { return m_Wrapper.m_Root; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(RootActions set) { return set.Get(); }
+            public void SetCallbacks(IRootActions instance)
+            {
+                if (m_Wrapper.m_RootActionsCallbackInterface != null)
+                {
+                    @Move.started -= m_Wrapper.m_RootActionsCallbackInterface.OnMove;
+                    @Move.performed -= m_Wrapper.m_RootActionsCallbackInterface.OnMove;
+                    @Move.canceled -= m_Wrapper.m_RootActionsCallbackInterface.OnMove;
+                    @Interact.started -= m_Wrapper.m_RootActionsCallbackInterface.OnInteract;
+                    @Interact.performed -= m_Wrapper.m_RootActionsCallbackInterface.OnInteract;
+                    @Interact.canceled -= m_Wrapper.m_RootActionsCallbackInterface.OnInteract;
+                }
+                m_Wrapper.m_RootActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @Move.started += instance.OnMove;
+                    @Move.performed += instance.OnMove;
+                    @Move.canceled += instance.OnMove;
+                    @Interact.started += instance.OnInteract;
+                    @Interact.performed += instance.OnInteract;
+                    @Interact.canceled += instance.OnInteract;
+                }
+            }
+        }
+        public RootActions @Root => new RootActions(this);
 
         // Debug
         private readonly InputActionMap m_Debug;
@@ -466,6 +625,11 @@ namespace Rootlesnake.Input
             }
         }
         public DebugActions @Debug => new DebugActions(this);
+        public interface IRootActions
+        {
+            void OnMove(InputAction.CallbackContext context);
+            void OnInteract(InputAction.CallbackContext context);
+        }
         public interface IDebugActions
         {
             void OnF1(InputAction.CallbackContext context);
