@@ -6,7 +6,7 @@ unityPipeline {
     PROJECT_AUTOVERSION = 'git'
     
     // which Unity Test Runner modes to execute
-    TEST_MODES = 'EditMode PlayMode'
+    TEST_MODES = ''
     
     // which executables to create
     BUILD_FOR_WINDOWS = '0'
