@@ -1,13 +1,8 @@
 {
-    "name": "Rootlesnake",
+    "name": "Rootlesnake.Input",
     "rootNamespace": "",
     "references": [
-        "Slothsoft.UnityExtensions",
-        "MyBox",
-        "Unity.InputSystem",
-        "Unity.TextMeshPro",
-        "Cinemachine",
-        "Rootlesnake.Input"
+        "GUID:75469ad4d38634e559750d17036d5f7c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
