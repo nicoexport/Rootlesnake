@@ -51,7 +51,8 @@ namespace Rootlesnake.Player {
         [SerializeField]
         float rotationSpeed = 0;
 
-        public RootBranch(Vector3 position) {
+        public RootBranch(IPlant root, Vector3 position) {
+            this.root = root;
             m_head = new(position);
             isAlive = true;
             nodeCount = 1;
@@ -59,6 +60,7 @@ namespace Rootlesnake.Player {
             previousAngle = integerAngle - 1;
         }
         public RootBranch(RootBranch parent, float angle) {
+            root = parent.root;
             m_head = parent.m_head;
             isAlive = parent.isAlive;
             nodeCount = parent.nodeCount;
@@ -85,12 +87,14 @@ namespace Rootlesnake.Player {
         }
         public Vector3 velocity => forward * movementSpeed;
 
+        public IPlant root { get; private set; }
+
         public void Update(float deltaTime) {
             angle = Mathf.SmoothDampAngle(angle, intendedAngle, ref rotationSpeed, rotationSmoothing, maxRotationSpeed, deltaTime);
 
             var motion = velocity * deltaTime;
-                        
-            if (!TextureManager.instance.TryMoveAndGetCollisionColor(m_head.position, motion, Color.blue, out var hitColor)) {
+
+            if (!TextureManager.instance.TryMoveAndGetCollisionColor(m_head.position, motion, root.playerColor, out var hitColor)) {
                 isAlive = false;
                 return;
             }
@@ -108,8 +112,8 @@ namespace Rootlesnake.Player {
         }
 
         public RootBranch CreateSplit() {
-            float leftAngle = angle - splitAngle;
-            float rightAngle = angle + splitAngle;
+            float leftAngle = angle + splitAngle;
+            float rightAngle = angle - splitAngle;
             angle = intendedAngle = leftAngle;
             previousAngle = integerAngle - 1;
 

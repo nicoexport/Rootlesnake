@@ -10,6 +10,8 @@ namespace Rootlesnake {
 
         bool isAlive { get; }
 
+        IPlant root { get; }
+
         IPlantNode head { get; }
 
         int nodeCount { get; }
