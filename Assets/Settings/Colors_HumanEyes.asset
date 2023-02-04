@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd93121a824b02e4c8b636cde3bc040f, type: 3}
   m_Name: Colors_HumanEyes
   m_EditorClassIdentifier: 
-  playerOne: {r: 0.23082057, g: 0.5022054, b: 0.5377358, a: 1}
+  playerOne: {r: 0.03899999, g: 0.05554896, b: 0.25, a: 1}
   playerTwo: {r: 0, g: 0, b: 1, a: 1}
   playerThree: {r: 0, g: 1, b: 0, a: 1}
   playerFour: {r: 0, g: 1, b: 1, a: 1}
@@ -20,4 +20,4 @@ MonoBehaviour:
   deadPlayerTwo: {r: 1, g: 0, b: 1, a: 1}
   deadPlayerThree: {r: 1, g: 1, b: 0, a: 1}
   deadPlayerFour: {r: 1, g: 1, b: 1, a: 1}
-  nutrient: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  nutrient: {r: 0.9763727, g: 4, b: 0, a: 1}

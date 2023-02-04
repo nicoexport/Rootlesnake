@@ -8,8 +8,8 @@ namespace Rootlesnake {
         [ContextMenu("NUTRIENTS!")]
         protected void Start() {
             for (int i = 0; i < numberOfNutrients; i++) {
-                int randX = Random.Range(0, TextureManager.instance.playSpaceSize.x);
-                int randY = Random.Range(0, TextureManager.instance.playSpaceSize.y);
+                int randX = Random.Range(-TextureManager.instance.playSpaceSize.x / 2, TextureManager.instance.playSpaceSize.x / 2);
+                int randY = Random.Range(-TextureManager.instance.playSpaceSize.y / 2, TextureManager.instance.playSpaceSize.y / 2);
                 var target = new Vector2(randX, randY);
                 TextureManager.instance.DrawPixelWorldSpace(color, target);
             }
