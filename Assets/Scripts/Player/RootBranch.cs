@@ -5,7 +5,8 @@ using UnityEngine;
 namespace Rootlesnake.Player {
     [Serializable]
     sealed class RootBranch : IPlantBranch {
-        public event Action onUpdateBranch;
+        public event Action onUpdateNodePositions;
+        public event Action onUpdateNodeCount;
 
         public bool isAlive { get; private set; }
 
@@ -32,7 +33,7 @@ namespace Rootlesnake.Player {
         [SerializeField]
         float maxRotationSpeed = 100;
         [SerializeField]
-        float splitAngle = 15;
+        float splitAngle = 30;
 
         int integerAngle => Mathf.RoundToInt(angle);
         int previousAngle = 0;
@@ -85,12 +86,13 @@ namespace Rootlesnake.Player {
             var motion = velocity * deltaTime;
             if (previousAngle == integerAngle) {
                 m_head.position += motion;
+                onUpdateNodePositions?.Invoke();
             } else {
                 nodeCount++;
                 m_head = m_head.CreateChild(motion);
                 previousAngle = integerAngle;
+                onUpdateNodeCount?.Invoke();
             }
-            onUpdateBranch?.Invoke();
         }
 
         public RootBranch CreateSplit() {

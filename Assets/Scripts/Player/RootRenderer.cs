@@ -26,9 +26,12 @@ namespace Rootlesnake.Player {
 
         void AddBranch(IPlantBranch branch) {
             var lineInstance = Instantiate(linePrefab, transform);
-            branch.onUpdateBranch += () => {
+            branch.onUpdateNodeCount += () => {
                 lineInstance.positionCount = branch.nodeCount;
-                lineInstance.SetPositions(branch.nodes.Select(node => node.position).Reverse().ToArray());
+                lineInstance.SetPositions(branch.nodes.Select(node => node.position).ToArray());
+            };
+            branch.onUpdateNodePositions += () => {
+                lineInstance.SetPosition(0, branch.head.position);
             };
         }
     }

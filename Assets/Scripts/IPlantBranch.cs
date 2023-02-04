@@ -3,7 +3,8 @@ using System.Collections.Generic;
 
 namespace Rootlesnake {
     interface IPlantBranch {
-        event Action onUpdateBranch;
+        event Action onUpdateNodePositions;
+        event Action onUpdateNodeCount;
 
         bool isAlive { get; }
 
