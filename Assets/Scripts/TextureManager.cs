@@ -8,7 +8,8 @@ namespace Rootlesnake {
         public static TextureManager instance { get; private set; }
 
         [SerializeField]
-        Rect playSpace = new();
+        Vector2Int m_playSpaceSize = new(192, 81);
+        public Vector2Int playSpaceSize => m_playSpaceSize;
 
         [SerializeField, Expandable]
         RenderTexture targetTexture;
@@ -70,9 +71,7 @@ namespace Rootlesnake {
         Vector2 WorldSpaceToRenderTextureSpace(in Vector3 position) {
             var normalizedPosition = position.SwizzleXY();
 
-            normalizedPosition += playSpace.position;
-
-            normalizedPosition /= playSpace.size;
+            normalizedPosition /= playSpaceSize;
 
             return normalizedPosition;
         }
