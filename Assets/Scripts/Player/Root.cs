@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Slothsoft.UnityExtensions;
 using UnityEngine;
 
 namespace Rootlesnake.Player {
@@ -39,16 +41,12 @@ namespace Rootlesnake.Player {
         }
 
         public void IntendToSplit() {
-            var newBranches = new List<RootBranch>();
-            foreach (var branch in branches) {
-                if (branch.isAlive) {
-                    newBranches.Add(branch.CreateSplit());
-                }
-            }
-            branches.AddRange(newBranches);
-            foreach (var branch in newBranches) {
-                onAddBranch?.Invoke(branch);
-            }
+            var branch = branches
+                .Where(branch => branch.isAlive)
+                .RandomElement();
+            var newBranch = branch.CreateSplit();
+            branches.Add(newBranch);
+            onAddBranch?.Invoke(newBranch);
         }
     }
 }
