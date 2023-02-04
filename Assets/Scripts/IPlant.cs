@@ -9,7 +9,9 @@ namespace Rootlesnake {
 
         int playerIndex { get; }
 
-        Color playerColor { get; }
+        Color aliveColor { get; }
+
+        Color deadColor { get; }
 
         void SetIntendedDirection(Vector2 direction);
 

@@ -94,12 +94,14 @@ namespace Rootlesnake.Player {
 
             var motion = velocity * deltaTime;
 
-            if (!TextureManager.instance.TryMoveAndGetCollisionColor(m_head.position, motion, root.playerColor, out var hitColor)) {
+            if (!TextureManager.instance.TryMoveAndGetCollisionColor(m_head.position, motion, root.aliveColor, out var hitColor)) {
                 isAlive = false;
+                onUpdateHeadPosition?.Invoke(m_head.position, m_head.position + motion);
                 return;
             }
 
             onUpdateHeadPosition?.Invoke(m_head.position, m_head.position + motion);
+
             if (previousAngle == integerAngle) {
                 m_head.position += motion;
                 onUpdateNodePositions?.Invoke();

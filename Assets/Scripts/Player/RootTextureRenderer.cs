@@ -21,7 +21,10 @@ namespace Rootlesnake.Player {
 
         void AddBranch(IPlantBranch branch) {
             branch.onUpdateHeadPosition += (start, stop) => {
-                TextureManager.instance.DrawLineWorldSpace(root.playerColor, start, stop);
+                var color = branch.isAlive
+                    ? root.aliveColor
+                    : root.deadColor;
+                TextureManager.instance.DrawLineWorldSpace(color, start, stop);
             };
         }
     }

@@ -32,12 +32,9 @@ namespace Rootlesnake.Player {
             }
         }
 
-        Color aliveColor;
-        Color deadColor;
+        public Color aliveColor { get; private set; }
 
-        public Color playerColor => isAlive
-            ? aliveColor
-            : deadColor;
+        public Color deadColor { get; private set; }
 
         [SerializeField]
         bool onlyOneChildSplit = false;
