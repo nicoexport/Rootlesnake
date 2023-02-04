@@ -1,3 +1,4 @@
+using System;
 using MyBox;
 using Slothsoft.UnityExtensions;
 using UnityEngine;
@@ -64,18 +65,29 @@ namespace Rootlesnake {
             GL.Begin(GL.LINES);
         }
 
-        public void DrawLineWorldSpace(Vector3 start, Vector3 stop) {
-            start += playSpace.position.SwizzleXY();
-            stop += playSpace.position.SwizzleXY();
+        Vector2 WorldSpaceToRenderTextureSpace(in Vector3 position) {
+            var normalizedPosition = position.SwizzleXY();
 
-            start.x /= playSpace.width;
-            start.y /= playSpace.height;
+            normalizedPosition += playSpace.position;
 
-            stop.x /= playSpace.width;
-            stop.y /= playSpace.height;
+            normalizedPosition.x /= playSpace.width;
+            normalizedPosition.y /= playSpace.height;
 
-            GL.Vertex(start);
-            GL.Vertex(stop);
+            return normalizedPosition;
+        }
+        Vector2Int WorldSpaceToTexture2DSpace(in Vector3 position) {
+            var normalizedPosition = WorldSpaceToRenderTextureSpace(position);
+
+            return Vector2Int.RoundToInt(Vector2.Scale(normalizedPosition, renderRect.size));
+        }
+
+
+        public void DrawLineWorldSpace(in Vector3 worldStartPosition, in Vector3 worldTargetPosition) {
+            var startPosition = WorldSpaceToRenderTextureSpace(worldStartPosition);
+            var targetPosition = WorldSpaceToRenderTextureSpace(worldTargetPosition);
+
+            GL.Vertex3(startPosition.x, startPosition.y, 0);
+            GL.Vertex3(targetPosition.x, targetPosition.y, 0);
         }
 
         void PostMoveRoots() {
@@ -84,6 +96,48 @@ namespace Rootlesnake {
             GL.PopMatrix();
 
             RenderTexture.active = previousTexture;
+        }
+
+        public bool CheckIfMoveIsPossible(in Vector3 worldStartPosition, in Vector3 worldMotion) {
+            //get all Pixels inbetween the currentPosition and the position after moving
+            var worldTargetPosition = worldStartPosition + worldMotion;
+
+            var startPosition = WorldSpaceToTexture2DSpace(worldStartPosition);
+            var targetPosition = WorldSpaceToTexture2DSpace(worldTargetPosition);
+
+            int x0 = startPosition.x;
+            int y0 = startPosition.y;
+
+            int x1 = targetPosition.x;
+            int y1 = targetPosition.y;
+
+            int dx = Math.Abs(x1 - x0);
+            int dy = Math.Abs(y1 - y0);
+            int sx = x0 < x1 ? 1 : -1;
+            int sy = y0 < y1 ? 1 : -1;
+            int err = dx - dy;
+
+            while (true) {
+                if (x0 == x1 && y0 == y1) {
+                    break;
+                }
+
+                int e2 = 2 * err;
+                if (e2 > -dy) {
+                    err -= dy;
+                    x0 += sx;
+                }
+                if (e2 < dx) {
+                    err += dx;
+                    y0 += sy;
+                }
+
+                if (m_collisionTexture.GetPixel(x0, y0).a > 0.5f) {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

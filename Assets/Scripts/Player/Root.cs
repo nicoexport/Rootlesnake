@@ -9,12 +9,15 @@ namespace Rootlesnake.Player {
     sealed class Root : IPlant {
         public event Action<IPlantBranch> onAddBranch;
 
+        public bool isAlive { get; private set; }
+
         [SerializeField]
         List<RootBranch> branches = new();
 
         public void Reset(Vector3 position) {
             branches.Clear();
             CreateBranch(position);
+            isAlive = true;
         }
 
         RootBranch CreateBranch(Vector3 position) {
@@ -25,10 +28,18 @@ namespace Rootlesnake.Player {
         }
 
         public void Update(float deltaTime) {
+            bool isAnyAlive = false;
             foreach (var branch in branches) {
                 if (branch.isAlive) {
                     branch.Update(deltaTime);
+                    if (branch.isAlive) {
+                        isAnyAlive = true;
+                    }
                 }
+            }
+            isAlive = isAnyAlive;
+            if (!isAlive) {
+                Debug.Log("We are DED");
             }
         }
 
@@ -41,6 +52,9 @@ namespace Rootlesnake.Player {
         }
 
         public void IntendToSplit() {
+            if (!isAlive) {
+                return;
+            }
             var branch = branches
                 .Where(branch => branch.isAlive)
                 .RandomElement();

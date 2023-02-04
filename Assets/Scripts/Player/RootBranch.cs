@@ -85,6 +85,12 @@ namespace Rootlesnake.Player {
             angle = Mathf.SmoothDampAngle(angle, intendedAngle, ref rotationSpeed, rotationSmoothing, maxRotationSpeed, deltaTime);
 
             var motion = velocity * deltaTime;
+
+            if (!TextureManager.instance.CheckIfMoveIsPossible(m_head.position, motion)) {
+                isAlive = false;
+                return;
+            }
+
             onUpdateHeadPosition?.Invoke(m_head.position, m_head.position + motion);
             if (previousAngle == integerAngle) {
                 m_head.position += motion;
