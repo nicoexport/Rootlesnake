@@ -135,9 +135,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 1064574238934802132, guid: a426ee9cbd07c134bb505d398f16d1f4, type: 3}
+      propertyPath: m_Color.b
+      value: 0.7654599
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064574238934802132, guid: a426ee9cbd07c134bb505d398f16d1f4, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8113208
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064574238934802132, guid: a426ee9cbd07c134bb505d398f16d1f4, type: 3}
+      propertyPath: m_Color.r
+      value: 0.60083663
+      objectReference: {fileID: 0}
     - target: {fileID: 1064574238934802133, guid: a426ee9cbd07c134bb505d398f16d1f4, type: 3}
       propertyPath: m_RootOrder
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064574238934802133, guid: a426ee9cbd07c134bb505d398f16d1f4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 663.02203
       objectReference: {fileID: 0}
     - target: {fileID: 1064574238934802133, guid: a426ee9cbd07c134bb505d398f16d1f4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1084,7 +1100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 562d526e835019942904b7d76dadd3dd, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
