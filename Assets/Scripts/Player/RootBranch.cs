@@ -5,6 +5,7 @@ using UnityEngine;
 namespace Rootlesnake.Player {
     [Serializable]
     sealed class RootBranch : IPlantBranch {
+        public event Action<Vector3, Vector3> onUpdateHeadPosition;
         public event Action onUpdateNodePositions;
         public event Action onUpdateNodeCount;
 
@@ -84,6 +85,7 @@ namespace Rootlesnake.Player {
             angle = Mathf.SmoothDampAngle(angle, intendedAngle, ref rotationSpeed, rotationSmoothing, maxRotationSpeed, deltaTime);
 
             var motion = velocity * deltaTime;
+            onUpdateHeadPosition?.Invoke(m_head.position, m_head.position + motion);
             if (previousAngle == integerAngle) {
                 m_head.position += motion;
                 onUpdateNodePositions?.Invoke();

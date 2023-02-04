@@ -11,8 +11,11 @@ namespace Rootlesnake.Player {
             m_root.Reset(transform.position);
         }
 
-        void FixedUpdate() {
-            m_root.Update(Time.deltaTime);
+        void OnEnable() {
+            GameManager.onMoveRoots += m_root.Update;
+        }
+        void OnDisable() {
+            GameManager.onMoveRoots -= m_root.Update;
         }
     }
 }
