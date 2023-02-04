@@ -124,8 +124,9 @@ namespace Rootlesnake {
             RenderTexture.active = previousTexture;
         }
 
-        public bool CheckIfMoveIsPossible(in Vector3 worldStartPosition, in Vector3 worldMotion) {
-            //get all Pixels inbetween the currentPosition and the position after moving
+        public bool TryMoveAndGetCollisionColor(in Vector3 worldStartPosition, in Vector3 worldMotion, in Color nodeColor, out Color hitColor) {
+            //get all Pixels inbetween the currentPosition and the position after movin
+            hitColor = default;
             var worldTargetPosition = worldStartPosition + worldMotion;
 
             var startPosition = WorldSpaceToTexture2DSpace(worldStartPosition);
@@ -163,7 +164,9 @@ namespace Rootlesnake {
                     y0 += sy;
                 }
 
-                if (m_collisionTexture.GetPixel(x0, y0).a > 0.5f) {
+                var pixel = m_collisionTexture.GetPixel(x0, y0);
+                if ((pixel.a > 0.75f && pixel == nodeColor) || (pixel.a > 0.5f && pixel != nodeColor)) {
+                    hitColor = pixel;
                     return false;
                 }
 

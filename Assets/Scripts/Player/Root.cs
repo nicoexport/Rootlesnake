@@ -52,7 +52,7 @@ namespace Rootlesnake.Player {
         }
 
         RootBranch CreateBranch(Vector3 position) {
-            var branch = new RootBranch(position);
+            var branch = new RootBranch(this, position);
             branches.Add(branch);
             onAddBranch?.Invoke(branch);
             return branch;
