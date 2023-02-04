@@ -1,0 +1,533 @@
+fileFormatVersion: 2
+guid: 0f4aabeadbd01624aad78888c45de772
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: b2a9591990af98743ba3ff7cf1000886, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 1
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 1
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  spriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+    spritePosition: {x: 0, y: 0}
+  mosaicSpriteImportData: []
+  rigSpriteImportData:
+  - name: flower4.2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 311
+      y: 856
+      width: 60
+      height: 36
+    spriteID: 61f585fe41b8d4f498c6aa67503dd66a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 311, y: 856}
+    spritePosition: {x: 360, y: 957}
+  - name: flower4.1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 709
+      y: 4
+      width: 261
+      height: 286
+    spriteID: 98103f34eb7208641ba72510a3eefbff
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 709, y: 4}
+    spritePosition: {x: 203, y: 664}
+  - name: leaf4
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 249
+      y: 4
+      width: 206
+      height: 420
+    spriteID: 9ed800244d9e27c4ab49f1a106b320cc
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 249, y: 4}
+    spritePosition: {x: 214, y: 503}
+  - name: flower3.2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 379
+      y: 856
+      width: 44
+      height: 47
+    spriteID: 3fcb7b85c2f930247a49dfe5237c0fee
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 379, y: 856}
+    spritePosition: {x: 56, y: 735}
+  - name: flower3.1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 237
+      height: 754
+    spriteID: 96dd061e430a32f429af2b8ab8577609
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+    spritePosition: {x: 25, y: 27}
+  - name: leaf3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 709
+      y: 298
+      width: 139
+      height: 394
+    spriteID: a634b1495ac2cfd498ea39a9ad7fda92
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 709, y: 298}
+    spritePosition: {x: 248, y: 356}
+  - name: flower2.4
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 249
+      y: 856
+      width: 54
+      height: 49
+    spriteID: e53849ad1465a4c4598095745cc38224
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 249, y: 856}
+    spritePosition: {x: 338, y: 572}
+  - name: flower2.1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 463
+      y: 4
+      width: 238
+      height: 319
+    spriteID: 903dd4f545eabc549abb2c2005cd289a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 463, y: 4}
+    spritePosition: {x: 191, y: 303}
+  - name: leaf2.1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 856
+      y: 298
+      width: 92
+      height: 402
+    spriteID: bf04f4a10cf0a0f4fa66e28366c32df6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 856, y: 298}
+    spritePosition: {x: 159, y: 186}
+  - name: flower1.3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 249
+      y: 913
+      width: 40
+      height: 41
+    spriteID: 1c9cea260f3e45a47a0fc0b0898d6a1c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 249, y: 913}
+    spritePosition: {x: 63, y: 405}
+  - name: flower1.1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 463
+      y: 331
+      width: 185
+      height: 359
+    spriteID: 03e568ab2ffdb3340b7ba365fbb0253c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 463, y: 331}
+    spritePosition: {x: 71, y: 109}
+  - name: leaf1.1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 249
+      y: 432
+      width: 178
+      height: 416
+    spriteID: dad41ee095b32cc42b62f78f4f4a9a5e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 249, y: 432}
+    spritePosition: {x: 230, y: 21}
+  characterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    pivot: {x: 0, y: 0}
+    boneReadOnly: 0
+  sharedRigSpriteImportData: []
+  sharedRigCharacterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    pivot: {x: 0, y: 0}
+    boneReadOnly: 0
+  platformSettings: []
+  mosaicLayers: 1
+  characterMode: 1
+  documentPivot: {x: 0, y: 0}
+  documentAlignment: 7
+  importHiddenLayers: 0
+  layerMappingOption: 2
+  generatePhysicsShape: 0
+  paperDollMode: 0
+  keepDupilcateSpriteName: 1
+  skeletonAssetReferenceID: 
+  padding: 4
+  spriteSizeExpand: 0
+  spriteCategoryList:
+    categories: []
+  spritePackingTag: 
+  resliceFromLayer: 0
+  mosaicPSDLayers: []
+  rigPSDLayers:
+  - name: flower4.2
+    spriteName: flower4.2
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 61f585fe41b8d4f498c6aa67503dd66a
+    layerID: 0
+    mosaicPosition: {x: 311, y: 856}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: flower4.1
+    spriteName: flower4.1
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 98103f34eb7208641ba72510a3eefbff
+    layerID: -754266410
+    mosaicPosition: {x: 709, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: leaf4
+    spriteName: leaf4
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 9ed800244d9e27c4ab49f1a106b320cc
+    layerID: 763610970
+    mosaicPosition: {x: 249, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: flower3.2
+    spriteName: flower3.2
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 3fcb7b85c2f930247a49dfe5237c0fee
+    layerID: -754266574
+    mosaicPosition: {x: 379, y: 856}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: flower3.1
+    spriteName: flower3.1
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 96dd061e430a32f429af2b8ab8577609
+    layerID: -754266571
+    mosaicPosition: {x: 4, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: leaf3
+    spriteName: leaf3
+    isGroup: 0
+    parentIndex: -1
+    spriteID: a634b1495ac2cfd498ea39a9ad7fda92
+    layerID: 763610969
+    mosaicPosition: {x: 709, y: 298}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: flower2.4
+    spriteName: flower2.4
+    isGroup: 0
+    parentIndex: -1
+    spriteID: e53849ad1465a4c4598095745cc38224
+    layerID: -754266471
+    mosaicPosition: {x: 249, y: 856}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: flower2.1
+    spriteName: flower2.1
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 903dd4f545eabc549abb2c2005cd289a
+    layerID: -754266476
+    mosaicPosition: {x: 463, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: leaf2.1
+    spriteName: leaf2.1
+    isGroup: 0
+    parentIndex: -1
+    spriteID: bf04f4a10cf0a0f4fa66e28366c32df6
+    layerID: -1713238317
+    mosaicPosition: {x: 856, y: 298}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: flower1.3
+    spriteName: flower1.3
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 1c9cea260f3e45a47a0fc0b0898d6a1c
+    layerID: -754266635
+    mosaicPosition: {x: 249, y: 913}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: flower1.1
+    spriteName: flower1.1
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 03e568ab2ffdb3340b7ba365fbb0253c
+    layerID: -754266637
+    mosaicPosition: {x: 463, y: 331}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: leaf1.1
+    spriteName: leaf1.1
+    isGroup: 0
+    parentIndex: -1
+    spriteID: dad41ee095b32cc42b62f78f4f4a9a5e
+    layerID: -1713238288
+    mosaicPosition: {x: 249, y: 432}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: 'sketch '
+    spriteName: 
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 5a3787f79c27c6a4580196aa1ec5f6bd
+    layerID: -844530102
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: Background
+    spriteName: 
+    isGroup: 0
+    parentIndex: -1
+    spriteID: c5cb27eae711726479c1807cc3213bec
+    layerID: -1498723586
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  sharedRigPSDLayers: []
+  pSDLayerImportSetting: []
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  spriteSizeExpandChanged: 0
+  generateGOHierarchy: 0
+  textureAssetName: 
+  prefabAssetName: 
+  spriteLibAssetName: 
+  skeletonAssetName: 
+  secondarySpriteTextures: []

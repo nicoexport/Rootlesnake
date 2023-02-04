@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityRandom = UnityEngine.Random;
 
 namespace Rootlesnake.Player {
     [Serializable]
@@ -28,13 +29,16 @@ namespace Rootlesnake.Player {
 
         [Header("Config")]
         [SerializeField]
-        float movementSpeed = 1;
+        float movementSpeed = UnityRandom.Range(1, 10);
         [SerializeField]
         float rotationSmoothing = 1;
         [SerializeField]
         float maxRotationSpeed = 100;
         [SerializeField]
-        float splitAngle = 30;
+        float splitAngleMin = 15;
+        [SerializeField]
+        float splitAngleMax = 45;
+        float splitAngle => UnityRandom.Range(splitAngleMin, splitAngleMax);
 
         int integerAngle => Mathf.RoundToInt(angle);
         int previousAngle = 0;
