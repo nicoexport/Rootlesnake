@@ -89,8 +89,8 @@ namespace Rootlesnake.Player {
             angle = Mathf.SmoothDampAngle(angle, intendedAngle, ref rotationSpeed, rotationSmoothing, maxRotationSpeed, deltaTime);
 
             var motion = velocity * deltaTime;
-
-            if (!TextureManager.instance.CheckIfMoveIsPossible(m_head.position, motion)) {
+                        
+            if (!TextureManager.instance.TryMoveAndGetCollisionColor(m_head.position, motion, Color.blue, out var hitColor)) {
                 isAlive = false;
                 return;
             }
