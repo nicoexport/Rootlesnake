@@ -1,4 +1,3 @@
-using System;
 using MyBox;
 using Slothsoft.UnityExtensions;
 using UnityEngine;
@@ -124,57 +123,49 @@ namespace Rootlesnake {
             RenderTexture.active = previousTexture;
         }
 
-        public bool TryMoveAndGetCollisionColor(in Vector3 worldStartPosition, in Vector3 worldMotion, in Color nodeColor, out Color hitColor) {
+        public bool TryToHitSomething(in Vector3 worldStartPosition, in Vector3 worldMotion, in Color ownColor, out Color hitColor) {
             //get all Pixels inbetween the currentPosition and the position after movin
-            hitColor = default;
+            hitColor = Color.black;
+
             var worldTargetPosition = worldStartPosition + worldMotion;
 
             var startPosition = WorldSpaceToTexture2DSpace(worldStartPosition);
             var targetPosition = WorldSpaceToTexture2DSpace(worldTargetPosition);
 
             if (IsOutOfBounds(targetPosition)) {
-                return false;
-            }
-
-            if (startPosition == targetPosition) {
                 return true;
             }
 
-            int x0 = startPosition.x;
-            int y0 = startPosition.y;
-
-            int x1 = targetPosition.x;
-            int y1 = targetPosition.y;
-
-            int dx = Math.Abs(x1 - x0);
-            int dy = Math.Abs(y1 - y0);
-            int sx = x0 < x1 ? 1 : -1;
-            int sy = y0 < y1 ? 1 : -1;
-            int err = dx - dy;
-
-            while (true) {
-
-                int e2 = 2 * err;
-                if (e2 > -dy) {
-                    err -= dy;
-                    x0 += sx;
-                }
-                if (e2 < dx) {
-                    err += dx;
-                    y0 += sy;
-                }
-
-                var pixel = m_collisionTexture.GetPixel(x0, y0);
-                if ((pixel.a > 0.75f && pixel == nodeColor) || (pixel.a > 0.5f && pixel != nodeColor)) {
-                    hitColor = pixel;
-                    return false;
-                }
-
-                if (x0 == x1 && y0 == y1) {
-                    break;
-                }
+            if (startPosition == targetPosition) {
+                return false;
             }
-            return true;
+
+            var delta = startPosition - targetPosition;
+
+            int steps = Mathf.Abs(Mathf.Abs(delta.x) > Mathf.Abs(delta.y) ? delta.x : delta.y);
+
+            float xIncrement = delta.x / (float)steps;
+            float yIncrement = delta.y / (float)steps;
+
+            float x = startPosition.x;
+            float y = startPosition.y;
+
+            for (int i = 0; i <= steps; i++) {
+                if (TryToHitSomething(new((int)x, (int)y), ownColor, out hitColor)) {
+                    return true;
+                }
+
+                x += xIncrement;
+                y += yIncrement;
+            }
+            return false;
+        }
+        public bool TryToHitSomething(in Vector2Int texture2DPosition, in Color ownColor, out Color hitColor) {
+            hitColor = m_collisionTexture.GetPixel(texture2DPosition.x, texture2DPosition.y);
+            if (hitColor == ownColor) {
+                return false;
+            }
+            return hitColor.a > 0.5f;
         }
 
         public bool IsOutOfBounds(Vector2Int position) {
