@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Rootlesnake {
@@ -34,5 +36,19 @@ namespace Rootlesnake {
         [SerializeField]
         [ColorUsage(true, true)]
         public Color nutrient = new(0.5f, 0.5f, 0.5f, 1);
+
+        public IEnumerable<Color> colors {
+            get {
+                yield return playerOne;
+                yield return playerTwo;
+                yield return playerThree;
+                yield return playerFour;
+                yield return deadPlayerOne;
+                yield return deadPlayerTwo;
+                yield return deadPlayerThree;
+                yield return deadPlayerFour;
+                yield return nutrient;
+            }
+        }
     }
 }
