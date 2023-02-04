@@ -5,9 +5,9 @@ namespace Rootlesnake.Player {
         [SerializeField]
         Root m_root = new();
 
-        public Root root => m_root;
+        public IPlant root => m_root;
 
-        void OnEnable() {
+        void Start() {
             m_root.Reset(transform.position);
         }
 
