@@ -104,6 +104,10 @@ namespace Rootlesnake {
             var startPosition = WorldSpaceToTexture2DSpace(worldStartPosition);
             var targetPosition = WorldSpaceToTexture2DSpace(worldTargetPosition);
 
+            if (IsOutOfBounds(targetPosition)) {
+                return false;
+            }
+
             int x0 = startPosition.x;
             int y0 = startPosition.y;
 
@@ -116,11 +120,13 @@ namespace Rootlesnake {
             int sy = y0 < y1 ? 1 : -1;
             int err = dx - dy;
 
-            while (true) {
-                if (x0 == x1 && y0 == y1) {
-                    break;
-                }
+            if (x0 == x1 && y0 == y1) {
+                return true;
+            }
 
+
+            while (true) {
+                
                 int e2 = 2 * err;
                 if (e2 > -dy) {
                     err -= dy;
@@ -134,9 +140,24 @@ namespace Rootlesnake {
                 if (m_collisionTexture.GetPixel(x0, y0).a > 0.5f) {
                     return false;
                 }
+
+                if (x0 == x1 && y0 == y1) {
+                    break;
+                }
+            }
+            return true;
+        }
+
+        public bool IsOutOfBounds(Vector2Int position) {
+
+            if (position.x < 0 || position.x > m_collisionTexture.width) {
+                return true;
+            }
+            if (position.y < 0 || position.y > m_collisionTexture.height) {
+                return true;
             }
 
-            return true;
+            return false;
         }
     }
 }
