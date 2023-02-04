@@ -95,6 +95,12 @@ namespace Rootlesnake.Player {
             var motion = velocity * deltaTime;
 
             if (!TextureManager.instance.TryMoveAndGetCollisionColor(m_head.position, motion, root.playerColor, out var hitColor)) {
+
+                if (GameManager.instance.IsNutrient(hitColor)) {
+                    Debug.Log("Yummy!"); 
+                    return;
+                }
+                
                 isAlive = false;
                 return;
             }

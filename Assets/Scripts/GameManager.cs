@@ -23,5 +23,11 @@ namespace Rootlesnake {
             onMoveRoots?.Invoke(Time.deltaTime);
             onPostMoveRoots?.Invoke();
         }
+
+        public bool IsNutrient(Color color) {
+            
+            Debug.Log(m_colors.nutrient + " :: " + color);
+            return m_colors.nutrient == color;
+        }
     }
 }
