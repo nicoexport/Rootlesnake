@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{aa5ec9db-4f0c-4404-a998-7fd9a5842c24}">
+		<property name="assetPath">
+			<value>Rootlesnake-Soundtrack.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>48</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{270fa401-85e7-43bf-a5dd-dfdf5ac79437}</destination>
+		</relationship>
+	</object>
+</objects>
