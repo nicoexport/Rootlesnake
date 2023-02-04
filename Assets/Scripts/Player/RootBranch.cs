@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityRandom = UnityEngine.Random;
 
 namespace Rootlesnake.Player {
     [Serializable]
@@ -28,13 +29,16 @@ namespace Rootlesnake.Player {
 
         [Header("Config")]
         [SerializeField]
-        float movementSpeed = 1;
+        float movementSpeed = UnityRandom.Range(1, 10);
         [SerializeField]
         float rotationSmoothing = 1;
         [SerializeField]
         float maxRotationSpeed = 100;
         [SerializeField]
-        float splitAngle = 30;
+        float splitAngleMin = 15;
+        [SerializeField]
+        float splitAngleMax = 45;
+        float splitAngle => UnityRandom.Range(splitAngleMin, splitAngleMax);
 
         int integerAngle => Mathf.RoundToInt(angle);
         int previousAngle = 0;
@@ -85,6 +89,12 @@ namespace Rootlesnake.Player {
             angle = Mathf.SmoothDampAngle(angle, intendedAngle, ref rotationSpeed, rotationSmoothing, maxRotationSpeed, deltaTime);
 
             var motion = velocity * deltaTime;
+
+            if (!TextureManager.instance.CheckIfMoveIsPossible(m_head.position, motion)) {
+                isAlive = false;
+                return;
+            }
+
             onUpdateHeadPosition?.Invoke(m_head.position, m_head.position + motion);
             if (previousAngle == integerAngle) {
                 m_head.position += motion;
