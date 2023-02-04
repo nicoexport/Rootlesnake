@@ -17,5 +17,9 @@ namespace Rootlesnake.Player {
         void OnDisable() {
             GameManager.onMoveRoots -= m_root.Update;
         }
+
+        public void SetPlayerIndex(int playerIndex) {
+            m_root.playerIndex = playerIndex;
+        }
     }
 }

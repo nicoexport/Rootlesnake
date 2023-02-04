@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6909eb253418f794fb0374299f647c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_colors: {fileID: 11400000, guid: 1fb5b816a4592b24c945ad2c1d633164, type: 2}
 --- !u!114 &8742659850671164516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,12 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1a12507a3cd0154eb1816a083fbc685, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playSpace:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 192
-    height: 81
+  m_playSpaceSize: {x: 192, y: 81}
   targetTexture: {fileID: 8400000, guid: 4dfb7efaf53757842b950a135710eee8, type: 2}
   previousTexture: {fileID: 0}
   renderFormat: 4
@@ -73,4 +69,5 @@ MonoBehaviour:
     y: 0
     width: 0
     height: 0
+  renderTexturePixelSize: {x: 0, y: 0, z: 0}
   m_collisionTexture: {fileID: 0}
