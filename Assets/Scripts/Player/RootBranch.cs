@@ -29,7 +29,7 @@ namespace Rootlesnake.Player {
 
         [Header("Config")]
         [SerializeField]
-        float movementSpeed = 5;
+        float movementSpeed = UnityRandom.Range(1, 10);
         [SerializeField]
         float rotationSmoothing = 1;
         [SerializeField]

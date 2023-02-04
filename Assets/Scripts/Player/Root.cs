@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Slothsoft.UnityExtensions;
 using UnityEngine;
 
@@ -9,17 +8,18 @@ namespace Rootlesnake.Player {
     sealed class Root : IPlant {
         public event Action<IPlantBranch> onAddBranch;
 
-        public bool isAlive { get; private set; }
+        public bool isAlive => branches.Count > 0;
 
         [SerializeField]
         bool onlyOneChildSplit = false;
         [SerializeField]
         List<RootBranch> branches = new();
 
+        readonly List<RootBranch> tmpBranches = new();
+
         public void Reset(Vector3 position) {
             branches.Clear();
             CreateBranch(position);
-            isAlive = true;
         }
 
         RootBranch CreateBranch(Vector3 position) {
@@ -30,16 +30,16 @@ namespace Rootlesnake.Player {
         }
 
         public void Update(float deltaTime) {
-            bool isAnyAlive = false;
+            tmpBranches.Clear();
             foreach (var branch in branches) {
-                if (branch.isAlive) {
-                    branch.Update(deltaTime);
-                    if (branch.isAlive) {
-                        isAnyAlive = true;
-                    }
+                branch.Update(deltaTime);
+                if (!branch.isAlive) {
+                    tmpBranches.Add(branch);
                 }
             }
-            isAlive = isAnyAlive;
+            foreach (var branch in tmpBranches) {
+                branches.Remove(branch);
+            }
             if (!isAlive) {
                 Debug.Log("We are DED");
             }
@@ -47,9 +47,7 @@ namespace Rootlesnake.Player {
 
         public void SetIntendedDirection(Vector2 direction) {
             foreach (var branch in branches) {
-                if (branch.isAlive) {
-                    branch.intendedDirection = direction;
-                }
+                branch.intendedDirection = direction;
             }
         }
 
@@ -58,21 +56,17 @@ namespace Rootlesnake.Player {
                 return;
             }
             if (onlyOneChildSplit) {
-                var branch = branches
-                    .Where(branch => branch.isAlive)
-                    .RandomElement();
+                var branch = branches.RandomElement();
                 var newBranch = branch.CreateSplit();
                 branches.Add(newBranch);
                 onAddBranch?.Invoke(newBranch);
             } else {
-                var newBranches = new List<RootBranch>();
+                tmpBranches.Clear();
                 foreach (var branch in branches) {
-                    if (branch.isAlive) {
-                        newBranches.Add(branch.CreateSplit());
-                    }
+                    tmpBranches.Add(branch.CreateSplit());
                 }
-                branches.AddRange(newBranches);
-                foreach (var branch in newBranches) {
+                foreach (var branch in tmpBranches) {
+                    branches.Add(branch);
                     onAddBranch?.Invoke(branch);
                 }
             }
