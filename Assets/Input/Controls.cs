@@ -388,7 +388,19 @@ namespace Rootlesnake.Input
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""Controls"",
+            ""bindingGroup"": ""Controls"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
             // Root
             m_Root = asset.FindActionMap("Root", throwIfNotFound: true);
@@ -625,6 +637,15 @@ namespace Rootlesnake.Input
             }
         }
         public DebugActions @Debug => new DebugActions(this);
+        private int m_ControlsSchemeIndex = -1;
+        public InputControlScheme ControlsScheme
+        {
+            get
+            {
+                if (m_ControlsSchemeIndex == -1) m_ControlsSchemeIndex = asset.FindControlSchemeIndex("Controls");
+                return asset.controlSchemes[m_ControlsSchemeIndex];
+            }
+        }
         public interface IRootActions
         {
             void OnMove(InputAction.CallbackContext context);

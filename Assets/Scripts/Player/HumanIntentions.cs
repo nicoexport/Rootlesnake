@@ -1,36 +1,43 @@
-using Rootlesnake.Input;
+using MyBox;
 using Slothsoft.UnityExtensions;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Rootlesnake.Player {
     sealed class HumanIntentions : MonoBehaviour {
         [SerializeField]
-        RootController controller;
-        IPlant root => controller.root;
+        PlayerInput input;
+        [SerializeField]
+        RootController controllerPrefab;
 
-        Controls controls;
-
+        [Space]
+        [SerializeField, ReadOnly]
+        RootController controllerInstance;
+        IPlant root => controllerInstance.root;
         void OnValidate() {
-            if (!controller) {
-                transform.TryGetComponentInParent(out controller);
+            if (!input) {
+                transform.TryGetComponentInParent(out input);
             }
-        }
-        void Awake() {
-            controls = new();
         }
         void OnEnable() {
-            controls.Enable();
+            controllerInstance = Instantiate(controllerPrefab, transform);
+            controllerInstance.SetPlayerIndex(input.playerIndex);
+
+            input.actions["Move"].performed += PerformMove;
+            input.actions["Interact"].performed += PerformInteraction;
         }
         void OnDisable() {
-            controls.Disable();
+            Destroy(controllerInstance);
+            input.actions["Move"].performed -= PerformMove;
+            input.actions["Interact"].performed -= PerformInteraction;
         }
-        void Update() {
-            if (controls.Root.Move.IsInProgress()) {
-                root.SetIntendedDirection(controls.Root.Move.ReadValue<Vector2>());
-            }
-            if (controls.Root.Interact.WasPressedThisFrame()) {
-                root.IntendToSplit();
-            }
+
+        void PerformMove(InputAction.CallbackContext context) {
+            root.SetIntendedDirection(context.ReadValue<Vector2>());
+        }
+
+        void PerformInteraction(InputAction.CallbackContext context) {
+            root.IntendToSplit();
         }
     }
 }

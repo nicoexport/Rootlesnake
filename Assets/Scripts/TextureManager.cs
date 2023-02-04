@@ -73,6 +73,8 @@ namespace Rootlesnake {
         Vector3 WorldSpaceToRenderTextureSpace(in Vector3 position) {
             var normalizedPosition = position.SwizzleXY();
 
+            normalizedPosition.x += playSpaceSize.x * 0.5f;
+            normalizedPosition.y += playSpaceSize.y * 0.5f;
             normalizedPosition /= playSpaceSize;
 
             return normalizedPosition;

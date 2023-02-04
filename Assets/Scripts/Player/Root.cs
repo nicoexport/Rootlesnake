@@ -10,6 +10,35 @@ namespace Rootlesnake.Player {
 
         public bool isAlive => branches.Count > 0;
 
+        int m_playerIndex;
+        public int playerIndex {
+            get => m_playerIndex;
+            set {
+                m_playerIndex = value;
+                aliveColor = value switch {
+                    0 => GameManager.instance.colors.playerOne,
+                    1 => GameManager.instance.colors.playerTwo,
+                    2 => GameManager.instance.colors.playerThree,
+                    3 => GameManager.instance.colors.playerFour,
+                    _ => throw new NotImplementedException(),
+                };
+                deadColor = value switch {
+                    0 => GameManager.instance.colors.deadPlayerOne,
+                    1 => GameManager.instance.colors.deadPlayerTwo,
+                    2 => GameManager.instance.colors.deadPlayerThree,
+                    3 => GameManager.instance.colors.deadPlayerFour,
+                    _ => throw new NotImplementedException(),
+                };
+            }
+        }
+
+        Color aliveColor;
+        Color deadColor;
+
+        public Color playerColor => isAlive
+            ? aliveColor
+            : deadColor;
+
         [SerializeField]
         bool onlyOneChildSplit = false;
         [SerializeField]
