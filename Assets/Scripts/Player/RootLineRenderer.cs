@@ -3,7 +3,7 @@ using Slothsoft.UnityExtensions;
 using UnityEngine;
 
 namespace Rootlesnake.Player {
-    sealed class RootRenderer : MonoBehaviour {
+    sealed class RootLineRenderer : MonoBehaviour {
         [SerializeField]
         RootController controller;
         IPlant root => controller.root;
