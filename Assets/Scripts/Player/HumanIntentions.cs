@@ -28,6 +28,9 @@ namespace Rootlesnake.Player {
             if (controls.Root.Move.IsInProgress()) {
                 root.SetIntendedDirection(controls.Root.Move.ReadValue<Vector2>());
             }
+            if (controls.Root.Interact.WasPressedThisFrame()) {
+                root.IntendToSplit();
+            }
         }
     }
 }

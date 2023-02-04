@@ -6,5 +6,7 @@ namespace Rootlesnake {
         event Action<IPlantBranch> onAddBranch;
 
         void SetIntendedDirection(Vector2 direction);
+
+        void IntendToSplit();
     }
 }

@@ -12,9 +12,14 @@ namespace Rootlesnake.Player {
 
         public void Reset(Vector3 position) {
             branches.Clear();
+            CreateBranch(position);
+        }
+
+        RootBranch CreateBranch(Vector3 position) {
             var branch = new RootBranch(position);
             branches.Add(branch);
             onAddBranch?.Invoke(branch);
+            return branch;
         }
 
         public void Update(float deltaTime) {
@@ -30,6 +35,19 @@ namespace Rootlesnake.Player {
                 if (branch.isAlive) {
                     branch.intendedDirection = direction;
                 }
+            }
+        }
+
+        public void IntendToSplit() {
+            var newBranches = new List<RootBranch>();
+            foreach (var branch in branches) {
+                if (branch.isAlive) {
+                    newBranches.Add(branch.CreateSplit());
+                }
+            }
+            branches.AddRange(newBranches);
+            foreach (var branch in newBranches) {
+                onAddBranch?.Invoke(branch);
             }
         }
     }

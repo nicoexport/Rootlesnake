@@ -31,6 +31,8 @@ namespace Rootlesnake.Player {
         float rotationSmoothing = 1;
         [SerializeField]
         float maxRotationSpeed = 100;
+        [SerializeField]
+        float splitAngle = 15;
 
         int integerAngle => Mathf.RoundToInt(angle);
         int previousAngle = 0;
@@ -46,8 +48,17 @@ namespace Rootlesnake.Player {
         public RootBranch(Vector3 position) {
             m_head = new(position);
             isAlive = true;
-            previousAngle = integerAngle - 1;
             nodeCount = 1;
+
+            previousAngle = integerAngle - 1;
+        }
+        public RootBranch(RootBranch parent, float angle) {
+            m_head = parent.m_head;
+            isAlive = parent.isAlive;
+            nodeCount = parent.nodeCount;
+
+            this.angle = intendedAngle = angle;
+            previousAngle = integerAngle - 1;
         }
 
         public Vector2 intendedDirection {
@@ -80,6 +91,15 @@ namespace Rootlesnake.Player {
                 previousAngle = integerAngle;
             }
             onUpdateBranch?.Invoke();
+        }
+
+        public RootBranch CreateSplit() {
+            float leftAngle = angle - splitAngle;
+            float rightAngle = angle + splitAngle;
+            angle = intendedAngle = leftAngle;
+            previousAngle = integerAngle - 1;
+
+            return new(this, rightAngle);
         }
     }
 }
