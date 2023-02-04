@@ -41,7 +41,10 @@ namespace Rootlesnake {
 
         void Start() {
             m_collisionTexture = new Texture2D(targetTexture.width, targetTexture.height, renderFormat, false) {
-                name = "Playfield"
+                name = "Playfield",
+                filterMode = FilterMode.Point,
+                wrapMode = TextureWrapMode.Clamp,
+                anisoLevel = 0,
             };
             renderRect = new Rect(0, 0, targetTexture.width, targetTexture.height);
         }
@@ -61,7 +64,6 @@ namespace Rootlesnake {
             renderMaterial.SetPass(0);
             GL.LoadOrtho();
 
-            GL.Color(Color.white);
             GL.Begin(GL.LINES);
         }
 
@@ -80,11 +82,26 @@ namespace Rootlesnake {
             return Vector2Int.RoundToInt(Vector2.Scale(normalizedPosition, renderRect.size));
         }
 
+        public void DrawPixelWorldSpace(in Color color, in Vector3 worldPosition) {
+            GL.PushMatrix();
+            renderMaterial.SetPass(0);
+            GL.LoadOrtho();
 
-        public void DrawLineWorldSpace(in Vector3 worldStartPosition, in Vector3 worldTargetPosition) {
+            GL.Color(color);
+            GL.Begin(GL.LINES);
+            var position = WorldSpaceToRenderTextureSpace(worldPosition);
+            GL.Vertex3(position.x, position.y, 0);
+            GL.Vertex3(position.x, position.y, 0);
+            GL.End();
+
+            GL.PopMatrix();
+        }
+
+        public void DrawLineWorldSpace(in Color color, in Vector3 worldStartPosition, in Vector3 worldTargetPosition) {
             var startPosition = WorldSpaceToRenderTextureSpace(worldStartPosition);
             var targetPosition = WorldSpaceToRenderTextureSpace(worldTargetPosition);
 
+            GL.Color(color);
             GL.Vertex3(startPosition.x, startPosition.y, 0);
             GL.Vertex3(targetPosition.x, targetPosition.y, 0);
         }
