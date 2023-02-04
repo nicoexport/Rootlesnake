@@ -1,8 +1,13 @@
 using System;
+using Slothsoft.UnityExtensions;
 using UnityEngine;
 
 namespace Rootlesnake {
     sealed class GameManager : MonoBehaviour {
+        [SerializeField, Expandable]
+        ColorSettings m_colors;
+        public ColorSettings colors => m_colors;
+
         public static GameManager instance { get; private set; }
 
         public static event Action onPreMoveRoots;
