@@ -6,31 +6,30 @@ namespace Rootlesnake.Player {
     sealed class RootRenderer : MonoBehaviour {
         [SerializeField]
         RootController controller;
-        Root root => controller.root;
-        [SerializeField]
-        LineRenderer line;
+        IPlant root => controller.root;
+
+        [Space]
+        [SerializeField, Expandable]
+        LineRenderer linePrefab;
 
         void OnValidate() {
             if (!controller) {
                 transform.TryGetComponentInParent(out controller);
             }
-            if (!line) {
-                transform.TryGetComponentInParent(out line);
-            }
         }
         void OnEnable() {
-            root.onUpdatePoints += UpdateLine;
+            root.onAddBranch += AddBranch;
         }
         void OnDisable() {
-            root.onUpdatePoints += UpdateLine;
-        }
-        void Start() {
-            UpdateLine();
+            root.onAddBranch -= AddBranch;
         }
 
-        void UpdateLine() {
-            line.positionCount = root.points.Count;
-            line.SetPositions(root.points.ToArray());
+        void AddBranch(IPlantBranch branch) {
+            var lineInstance = Instantiate(linePrefab, transform);
+            branch.onUpdateBranch += () => {
+                lineInstance.positionCount = branch.nodeCount;
+                lineInstance.SetPositions(branch.nodes.Select(node => node.position).Reverse().ToArray());
+            };
         }
     }
 }

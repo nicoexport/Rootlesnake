@@ -6,7 +6,7 @@ namespace Rootlesnake.Player {
     sealed class HumanIntentions : MonoBehaviour {
         [SerializeField]
         RootController controller;
-        Root root => controller.root;
+        IPlant root => controller.root;
 
         Controls controls;
 
@@ -26,7 +26,7 @@ namespace Rootlesnake.Player {
         }
         void Update() {
             if (controls.Root.Move.IsInProgress()) {
-                root.intendedDirection = controls.Root.Move.ReadValue<Vector2>();
+                root.SetIntendedDirection(controls.Root.Move.ReadValue<Vector2>());
             }
         }
     }
