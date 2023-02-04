@@ -70,8 +70,7 @@ namespace Rootlesnake {
 
             normalizedPosition += playSpace.position;
 
-            normalizedPosition.x /= playSpace.width;
-            normalizedPosition.y /= playSpace.height;
+            normalizedPosition /= playSpace.size;
 
             return normalizedPosition;
         }

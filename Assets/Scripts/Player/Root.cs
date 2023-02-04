@@ -12,6 +12,8 @@ namespace Rootlesnake.Player {
         public bool isAlive { get; private set; }
 
         [SerializeField]
+        bool onlyOneChildSplit = false;
+        [SerializeField]
         List<RootBranch> branches = new();
 
         public void Reset(Vector3 position) {
@@ -55,12 +57,25 @@ namespace Rootlesnake.Player {
             if (!isAlive) {
                 return;
             }
-            var branch = branches
-                .Where(branch => branch.isAlive)
-                .RandomElement();
-            var newBranch = branch.CreateSplit();
-            branches.Add(newBranch);
-            onAddBranch?.Invoke(newBranch);
+            if (onlyOneChildSplit) {
+                var branch = branches
+                    .Where(branch => branch.isAlive)
+                    .RandomElement();
+                var newBranch = branch.CreateSplit();
+                branches.Add(newBranch);
+                onAddBranch?.Invoke(newBranch);
+            } else {
+                var newBranches = new List<RootBranch>();
+                foreach (var branch in branches) {
+                    if (branch.isAlive) {
+                        newBranches.Add(branch.CreateSplit());
+                    }
+                }
+                branches.AddRange(newBranches);
+                foreach (var branch in newBranches) {
+                    onAddBranch?.Invoke(branch);
+                }
+            }
         }
     }
 }
