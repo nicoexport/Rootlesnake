@@ -80,20 +80,30 @@ namespace Rootlesnake {
 
             return Vector2Int.RoundToInt(Vector2.Scale(normalizedPosition, renderRect.size));
         }
+        Vector2 TextureSpaceToRenderTextureSpace(in Vector2Int position) {
+            return new Vector2(position.x, position.y) / renderRect.size;
+        }
 
         public void DrawPixelWorldSpace(in Color color, in Vector3 worldPosition) {
+            var previousTexture = RenderTexture.active;
+            RenderTexture.active = targetTexture;
+
             GL.PushMatrix();
             renderMaterial.SetPass(0);
             GL.LoadOrtho();
 
             GL.Color(color);
-            GL.Begin(GL.LINES);
-            var position = WorldSpaceToRenderTextureSpace(worldPosition);
-            GL.Vertex3(position.x, position.y, 0);
-            GL.Vertex3(position.x, position.y, 0);
+            GL.Begin(GL.QUADS);
+            var texturePosition = WorldSpaceToTexture2DSpace(worldPosition);
+            GL.Vertex(TextureSpaceToRenderTextureSpace(texturePosition));
+            GL.Vertex(TextureSpaceToRenderTextureSpace(texturePosition + Vector2Int.up));
+            GL.Vertex(TextureSpaceToRenderTextureSpace(texturePosition + Vector2Int.one));
+            GL.Vertex(TextureSpaceToRenderTextureSpace(texturePosition + Vector2Int.right));
             GL.End();
 
             GL.PopMatrix();
+
+            RenderTexture.active = previousTexture;
         }
 
         public void DrawLineWorldSpace(in Color color, in Vector3 worldStartPosition, in Vector3 worldTargetPosition) {
