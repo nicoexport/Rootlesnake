@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 using UnityRandom = UnityEngine.Random;
 
@@ -109,8 +110,10 @@ namespace Rootlesnake.Player {
             if (TextureManager.instance.TryToHitSomething(newPosition2D, out bool isNutrient)) {
                 if (isNutrient) {
                     Debug.Log("Yummy!");
+                    root.Feed();
                 } else {
                     isAlive = false;
+                    AudioManager.instance.PlayAudio(Audio.RootCollide);
                     TextureManager.instance.DrawDotPixelSpace(color, newPosition2D);
                     return;
                 }
@@ -133,6 +136,7 @@ namespace Rootlesnake.Player {
             angle = intendedAngle = leftAngle;
             previousAngle = integerAngle - 1;
 
+            AudioManager.instance.PlayAudio(Audio.RootSplit);
             return new(this, rightAngle);
         }
     }

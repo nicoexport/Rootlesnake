@@ -16,5 +16,7 @@ namespace Rootlesnake {
         void SetIntendedDirection(Vector2 direction);
 
         void IntendToSplit();
+
+        void Feed();
     }
 }
