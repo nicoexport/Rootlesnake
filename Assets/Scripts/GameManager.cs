@@ -28,10 +28,13 @@ namespace Rootlesnake {
         }
 
         public bool IsNutrient(in Color color) {
-            if (color != Color.black) {
-                Debug.Log(m_collisionColors.nutrient + " :: " + color);
-            }
-            return m_collisionColors.nutrient == color;
+            return IsApproximately(m_collisionColors.nutrient, color);
+        }
+        static bool IsApproximately(in Color a, in Color b, float delta = 0.25f) {
+            return Math.Abs(a.r - b.r) < delta
+                && Math.Abs(a.g - b.g) < delta
+                && Math.Abs(a.b - b.b) < delta
+                && Math.Abs(a.a - b.a) < delta;
         }
     }
 }
