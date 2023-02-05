@@ -1,5 +1,6 @@
 using Rootlesnake.Plants;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Rootlesnake.Player {
     sealed class RootController : MonoBehaviour {

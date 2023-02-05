@@ -96,7 +96,7 @@ namespace Rootlesnake.Player {
                     onAddBranch?.Invoke(branch);
                 }
             }
-        }
+        }   
 
         public void Feed() {
             myGrowingPlant.UpdatePlant();
