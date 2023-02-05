@@ -137,7 +137,7 @@ Material:
     - _Output_6: {r: 1, g: 0, b: 1, a: 1}
     - _Output_7: {r: 1, g: 1, b: 0, a: 1}
     - _Output_8: {r: 1, g: 1, b: 1, a: 1}
-    - _Output_9: {r: 0.9763727, g: 4, b: 0, a: 1}
+    - _Output_9: {r: 0, g: 23.01879, b: 15.449873, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &5716506424137441711

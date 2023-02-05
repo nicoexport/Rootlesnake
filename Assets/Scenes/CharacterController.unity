@@ -846,6 +846,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1663624817750585487, guid: 22906b6d9d92ec2498d3c3cb1cb22647, type: 3}
+      propertyPath: colorSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 1fb5b816a4592b24c945ad2c1d633164, type: 2}
     - target: {fileID: 2589617255123917051, guid: 22906b6d9d92ec2498d3c3cb1cb22647, type: 3}
       propertyPath: m_Name
       value: P_Game_Setup

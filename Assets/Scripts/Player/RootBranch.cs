@@ -95,6 +95,12 @@ namespace Rootlesnake.Player {
             var motion = velocity * deltaTime;
 
             if (TextureManager.instance.TryToHitSomething(m_head.position, motion, out var hitColor)) {
+
+                if (GameManager.instance.IsNutrient(hitColor)) {
+                    Debug.Log("Yummy!"); 
+                    return;
+                }
+                
                 isAlive = false;
                 onUpdateHeadPosition?.Invoke(m_head.position, m_head.position + motion);
                 return;
