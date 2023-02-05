@@ -63,9 +63,6 @@ namespace Rootlesnake.Player {
             foreach (var branch in tmpBranches) {
                 branches.Remove(branch);
             }
-            if (!isAlive) {
-                Debug.Log("We are DED");
-            }
         }
 
         public void SetIntendedDirection(Vector2 direction) {

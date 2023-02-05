@@ -8,6 +8,7 @@ namespace Rootlesnake {
         public static GameManager instance { get; private set; }
 
         public static event Action onStartRound;
+        public static event Action onStopRound;
 
         [SerializeField, Expandable]
         ColorSettings m_playfieldColors;
@@ -58,6 +59,10 @@ namespace Rootlesnake {
 
         public void StartRound() {
             onStartRound?.Invoke();
+        }
+
+        public void StopRound() {
+            onStopRound?.Invoke();
         }
     }
 }

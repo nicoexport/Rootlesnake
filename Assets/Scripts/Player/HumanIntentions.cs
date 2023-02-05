@@ -21,6 +21,11 @@ namespace Rootlesnake.Player {
         IPlant root => controllerInstance
             ? controllerInstance.root
             : null;
+
+        public bool isAlive => root is null
+            ? false
+            : root.isAlive;
+
         void OnValidate() {
             if (!input) {
                 transform.TryGetComponentInParent(out input);
@@ -44,6 +49,12 @@ namespace Rootlesnake.Player {
         public void SpawnRoot() {
             controllerInstance = Instantiate(controllerPrefab, transform);
             controllerInstance.SpawnPlant(input.playerIndex, config.prefab);
+        }
+
+        public void DestroyRoot() {
+            if (controllerInstance) {
+                Destroy(controllerInstance);
+            }
         }
 
         void PerformMove(InputAction.CallbackContext context) {
