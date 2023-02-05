@@ -1,4 +1,5 @@
 using System;
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,7 +8,6 @@ namespace Rootlesnake.Plants {
         [SerializeField] GameObject[] plantStages;
         [SerializeField, Range(0f, 100f)] float plantProgress;
         [SerializeField] float maxProgress = 100;
-        [SerializeField] private UnityEvent onFeed;
 
         protected void Start() {
             UpdatePlant();
@@ -25,7 +25,7 @@ namespace Rootlesnake.Plants {
                     plantStages[i].SetActive(false);
                 }
             }
-            onFeed.Invoke();
+            AudioManager.instance.PlayAudio(Audio.NutrientCollect);
         }
 
         public void SetColor(Color color) {
