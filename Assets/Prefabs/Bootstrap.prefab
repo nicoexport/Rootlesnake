@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8742659850671164515}
   - component: {fileID: 8742659850671164514}
   - component: {fileID: 8742659850671164516}
+  - component: {fileID: 2090396967645898643}
   m_Layer: 0
   m_Name: Bootstrap
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8742659850671164514
 MonoBehaviour:
@@ -45,7 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6909eb253418f794fb0374299f647c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_colors: {fileID: 11400000, guid: 1fb5b816a4592b24c945ad2c1d633164, type: 2}
+  m_playfieldColors: {fileID: 11400000, guid: efadb40110822a048ba4aac332d75a8b, type: 2}
+  m_collisionColors: {fileID: 11400000, guid: 1fb5b816a4592b24c945ad2c1d633164, type: 2}
 --- !u!114 &8742659850671164516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,6 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playSpaceSize: {x: 192, y: 81}
+  m_collisionSize: {x: 960, y: 405}
   targetTexture: {fileID: 8400000, guid: 4dfb7efaf53757842b950a135710eee8, type: 2}
   previousTexture: {fileID: 0}
   renderFormat: 4
@@ -71,3 +74,18 @@ MonoBehaviour:
     height: 0
   renderTexturePixelSize: {x: 0, y: 0, z: 0}
   m_collisionTexture: {fileID: 0}
+--- !u!114 &2090396967645898643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8742659850671164513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcb4bccae5404ad2a15a860faa4b7e0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 562d526e835019942904b7d76dadd3dd, type: 2}
+  inputString: _Input_
+  outputString: _Output_

@@ -5,8 +5,11 @@ using UnityEngine;
 namespace Rootlesnake {
     sealed class GameManager : MonoBehaviour {
         [SerializeField, Expandable]
-        ColorSettings m_colors;
-        public ColorSettings colors => m_colors;
+        ColorSettings m_playfieldColors;
+        public ColorSettings playfieldColors => m_playfieldColors;
+        [SerializeField, Expandable]
+        ColorSettings m_collisionColors;
+        public ColorSettings collisionColors => m_collisionColors;
 
         public static GameManager instance { get; private set; }
 
@@ -24,10 +27,11 @@ namespace Rootlesnake {
             onPostMoveRoots?.Invoke();
         }
 
-        public bool IsNutrient(Color color) {
-            
-            Debug.Log(m_colors.nutrient + " :: " + color);
-            return m_colors.nutrient == color;
+        public bool IsNutrient(in Color color) {
+            if (color != Color.black) {
+                Debug.Log(m_collisionColors.nutrient + " :: " + color);
+            }
+            return m_collisionColors.nutrient == color;
         }
     }
 }

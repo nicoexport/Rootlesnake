@@ -1,40 +1,37 @@
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Rootlesnake.Components {
     public class RawImageColorMaterialColorInfusingGuy : MonoBehaviour {
-        [SerializeField] private RawImage image;
-        [SerializeField] private ColorSettings outputSettings;
-        [SerializeField] private ColorSettings inputSettings;
-        [SerializeField] private string inputString = "_Input_";
-        [SerializeField] private string outputString = "_Output_";
-        
+        [SerializeField] Material material;
+        [SerializeField] string inputString = "_Input_";
+        [SerializeField] string outputString = "_Output_";
+
 
         protected void Start() {
             UpdateColors();
+            material.SetTexture("_MainTex", TextureManager.instance.collisionTexture);
         }
 
-        protected void Update() {
 #if UNITY_EDITOR
-        UpdateColors();
+        protected void Update() {
+            UpdateColors();
+        }
 #endif
-        }
-        
-        void UpdateColors() {
-            var inp = inputSettings.colors.ToList();
-            var outp = outputSettings.colors.ToList();
-            
-            for (int i = 0; i < inp.Count; i++) {
-                var inStr = inputString + (i + 1);
-                var outStr = outputString + (i + 1);
 
-                image.material.SetColor(inStr, inp[i]);
-                image.material.SetColor(outStr, outp[i]);
+        void UpdateColors() {
+            var inp = GameManager.instance.collisionColors.colors.ToList();
+            var outp = GameManager.instance.playfieldColors.colors.ToList();
+
+            for (int i = 0; i < inp.Count; i++) {
+                string inStr = inputString + (i + 1);
+                string outStr = outputString + (i + 1);
+
+                material.SetColor(inStr, inp[i]);
+                material.SetColor(outStr, outp[i]);
             }
-            
         }
-        
+
     }
-    
+
 }

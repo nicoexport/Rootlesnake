@@ -16,17 +16,17 @@ namespace Rootlesnake.Player {
             set {
                 m_playerIndex = value;
                 aliveColor = value switch {
-                    0 => GameManager.instance.colors.playerOne,
-                    1 => GameManager.instance.colors.playerTwo,
-                    2 => GameManager.instance.colors.playerThree,
-                    3 => GameManager.instance.colors.playerFour,
+                    0 => GameManager.instance.collisionColors.playerOne,
+                    1 => GameManager.instance.collisionColors.playerTwo,
+                    2 => GameManager.instance.collisionColors.playerThree,
+                    3 => GameManager.instance.collisionColors.playerFour,
                     _ => throw new NotImplementedException(),
                 };
                 deadColor = value switch {
-                    0 => GameManager.instance.colors.deadPlayerOne,
-                    1 => GameManager.instance.colors.deadPlayerTwo,
-                    2 => GameManager.instance.colors.deadPlayerThree,
-                    3 => GameManager.instance.colors.deadPlayerFour,
+                    0 => GameManager.instance.collisionColors.deadPlayerOne,
+                    1 => GameManager.instance.collisionColors.deadPlayerTwo,
+                    2 => GameManager.instance.collisionColors.deadPlayerThree,
+                    3 => GameManager.instance.collisionColors.deadPlayerFour,
                     _ => throw new NotImplementedException(),
                 };
             }
