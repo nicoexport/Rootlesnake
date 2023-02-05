@@ -1,19 +1,18 @@
 using DefaultNamespace;
 using Rootlesnake.Plants;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Rootlesnake.Player {
     sealed class RootController : MonoBehaviour {
         [SerializeField]
         Root m_root = new();
-        
+
         [SerializeField]
         GrowingPlant growingPlantPrefab;
 
-        [SerializeField] private Vector3 plantOffset = new Vector3(0f, 1f, 0f);
+        [SerializeField] Vector3 plantOffset = new Vector3(0f, 1f, 0f);
 
-        private GrowingPlant growingPlant;
+        GrowingPlant growingPlant;
 
         public IPlant root => m_root;
 

@@ -2,10 +2,10 @@ using System;
 using UnityEngine;
 
 namespace DefaultNamespace {
-    public class AudioManager : MonoBehaviour {
+    sealed class AudioManager : MonoBehaviour {
 
         public static AudioManager instance { get; private set; }
-        
+
         void Awake() {
             instance = this;
         }
@@ -13,7 +13,7 @@ namespace DefaultNamespace {
         public void PlayAudio(Audio audio) {
             switch (audio) {
                 case Audio.RootCollide:
-                   // FMODUnity.RuntimeManager.PlayOneShot("event:/Root_Colide");
+                    // FMODUnity.RuntimeManager.PlayOneShot("event:/Root_Colide");
                     break;
                 case Audio.RootGrow:
                     FMODUnity.RuntimeManager.PlayOneShot("event:/Root_Grow");
@@ -37,7 +37,7 @@ namespace DefaultNamespace {
                     FMODUnity.RuntimeManager.PlayOneShot("event:/Menu_Confirm");
                     break;
                 case Audio.MenuCancel:
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Menu_Cancel");;
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Menu_Cancel");
                     break;
                 case Audio.MenuBGM:
                     FMODUnity.RuntimeManager.PlayOneShot("event:/Menu_BGM");
@@ -50,8 +50,8 @@ namespace DefaultNamespace {
             }
         }
     }
-    
-    public enum Audio{
+
+    public enum Audio {
         RootCollide,
         RootGrow,
         RootSplit,

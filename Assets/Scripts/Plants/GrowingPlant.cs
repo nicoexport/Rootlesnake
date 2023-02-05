@@ -1,7 +1,6 @@
 using System;
 using DefaultNamespace;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Rootlesnake.Plants {
     public class GrowingPlant : MonoBehaviour {
@@ -15,7 +14,7 @@ namespace Rootlesnake.Plants {
 
         public void UpdatePlant() {
             plantProgress += 1f;
-            
+
             float step = maxProgress / plantStages.Length;
             float sum = 0f;
             for (int i = 0; i < plantStages.Length; sum += step, i++) {
@@ -29,11 +28,11 @@ namespace Rootlesnake.Plants {
         }
 
         public void SetColor(Color color) {
-            
-            
+
+
             foreach (var stage in plantStages) {
                 if (stage.TryGetComponent(out Renderer rend)) {
-                    var tempCol = GameManager.instance.CollisionColorToPlayfieldColor(color);   
+                    var tempCol = GameManager.instance.CollisionColorToPlayfieldColor(color);
                     rend.material.SetColor("_InputColor", tempCol);
                 }
             }
