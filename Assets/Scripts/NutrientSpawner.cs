@@ -8,8 +8,8 @@ namespace Rootlesnake {
         [ContextMenu("NUTRIENTS!")]
         protected void Start() {
             for (int i = 0; i < numberOfNutrients; i++) {
-                int randX = Random.Range(0, TextureManager.instance.renderSize.x);
-                int randY = Random.Range(0, TextureManager.instance.renderSize.y);
+                int randX = Random.Range(0, TextureManager.instance.collisionSize.x);
+                int randY = Random.Range(0, TextureManager.instance.collisionSize.y);
 
                 TextureManager.instance.DrawDotPixelSpace(
                     GameManager.instance.collisionColors.nutrient,

@@ -46,6 +46,42 @@ namespace Rootlesnake.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Start"",
+                    ""type"": ""Button"",
+                    ""id"": ""e7346dcb-276f-4297-b9b6-d47bd9f75c78"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToMainMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""8442d63d-9464-444b-b9b0-97872adc223d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UIDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""812b8606-2b92-4618-95ca-82f6f6cae592"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UIUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""94a3a4b8-cd46-4f45-868d-4b065e1485e9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -134,6 +170,72 @@ namespace Rootlesnake.Input
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6fdb8f2d-5a00-427f-bd8a-170833c2cd7d"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""026845f8-d636-4c08-80af-677527736ec2"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ea0fe319-bec8-440b-9bc4-36692117ec4d"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToMainMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a4afee6d-63f8-47f8-b609-2f650ec9998b"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToMainMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d47579dc-3906-44f2-8b48-0aee09373602"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UIDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""29a36df0-8d79-4887-bba9-d62a42161c77"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UIUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -390,11 +492,22 @@ namespace Rootlesnake.Input
     ],
     ""controlSchemes"": [
         {
-            ""name"": ""Controls"",
-            ""bindingGroup"": ""Controls"",
+            ""name"": ""Gamepad"",
+            ""bindingGroup"": ""Gamepad"",
             ""devices"": [
                 {
                     ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Keyboard"",
+            ""bindingGroup"": ""Keyboard"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
                     ""isOptional"": false,
                     ""isOR"": false
                 }
@@ -406,6 +519,10 @@ namespace Rootlesnake.Input
             m_Root = asset.FindActionMap("Root", throwIfNotFound: true);
             m_Root_Move = m_Root.FindAction("Move", throwIfNotFound: true);
             m_Root_Interact = m_Root.FindAction("Interact", throwIfNotFound: true);
+            m_Root_Start = m_Root.FindAction("Start", throwIfNotFound: true);
+            m_Root_ToMainMenu = m_Root.FindAction("ToMainMenu", throwIfNotFound: true);
+            m_Root_UIDown = m_Root.FindAction("UIDown", throwIfNotFound: true);
+            m_Root_UIUp = m_Root.FindAction("UIUp", throwIfNotFound: true);
             // Debug
             m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
             m_Debug_F1 = m_Debug.FindAction("F1", throwIfNotFound: true);
@@ -481,12 +598,20 @@ namespace Rootlesnake.Input
         private IRootActions m_RootActionsCallbackInterface;
         private readonly InputAction m_Root_Move;
         private readonly InputAction m_Root_Interact;
+        private readonly InputAction m_Root_Start;
+        private readonly InputAction m_Root_ToMainMenu;
+        private readonly InputAction m_Root_UIDown;
+        private readonly InputAction m_Root_UIUp;
         public struct RootActions
         {
             private @Controls m_Wrapper;
             public RootActions(@Controls wrapper) { m_Wrapper = wrapper; }
             public InputAction @Move => m_Wrapper.m_Root_Move;
             public InputAction @Interact => m_Wrapper.m_Root_Interact;
+            public InputAction @Start => m_Wrapper.m_Root_Start;
+            public InputAction @ToMainMenu => m_Wrapper.m_Root_ToMainMenu;
+            public InputAction @UIDown => m_Wrapper.m_Root_UIDown;
+            public InputAction @UIUp => m_Wrapper.m_Root_UIUp;
             public InputActionMap Get() { return m_Wrapper.m_Root; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -502,6 +627,18 @@ namespace Rootlesnake.Input
                     @Interact.started -= m_Wrapper.m_RootActionsCallbackInterface.OnInteract;
                     @Interact.performed -= m_Wrapper.m_RootActionsCallbackInterface.OnInteract;
                     @Interact.canceled -= m_Wrapper.m_RootActionsCallbackInterface.OnInteract;
+                    @Start.started -= m_Wrapper.m_RootActionsCallbackInterface.OnStart;
+                    @Start.performed -= m_Wrapper.m_RootActionsCallbackInterface.OnStart;
+                    @Start.canceled -= m_Wrapper.m_RootActionsCallbackInterface.OnStart;
+                    @ToMainMenu.started -= m_Wrapper.m_RootActionsCallbackInterface.OnToMainMenu;
+                    @ToMainMenu.performed -= m_Wrapper.m_RootActionsCallbackInterface.OnToMainMenu;
+                    @ToMainMenu.canceled -= m_Wrapper.m_RootActionsCallbackInterface.OnToMainMenu;
+                    @UIDown.started -= m_Wrapper.m_RootActionsCallbackInterface.OnUIDown;
+                    @UIDown.performed -= m_Wrapper.m_RootActionsCallbackInterface.OnUIDown;
+                    @UIDown.canceled -= m_Wrapper.m_RootActionsCallbackInterface.OnUIDown;
+                    @UIUp.started -= m_Wrapper.m_RootActionsCallbackInterface.OnUIUp;
+                    @UIUp.performed -= m_Wrapper.m_RootActionsCallbackInterface.OnUIUp;
+                    @UIUp.canceled -= m_Wrapper.m_RootActionsCallbackInterface.OnUIUp;
                 }
                 m_Wrapper.m_RootActionsCallbackInterface = instance;
                 if (instance != null)
@@ -512,6 +649,18 @@ namespace Rootlesnake.Input
                     @Interact.started += instance.OnInteract;
                     @Interact.performed += instance.OnInteract;
                     @Interact.canceled += instance.OnInteract;
+                    @Start.started += instance.OnStart;
+                    @Start.performed += instance.OnStart;
+                    @Start.canceled += instance.OnStart;
+                    @ToMainMenu.started += instance.OnToMainMenu;
+                    @ToMainMenu.performed += instance.OnToMainMenu;
+                    @ToMainMenu.canceled += instance.OnToMainMenu;
+                    @UIDown.started += instance.OnUIDown;
+                    @UIDown.performed += instance.OnUIDown;
+                    @UIDown.canceled += instance.OnUIDown;
+                    @UIUp.started += instance.OnUIUp;
+                    @UIUp.performed += instance.OnUIUp;
+                    @UIUp.canceled += instance.OnUIUp;
                 }
             }
         }
@@ -637,19 +786,32 @@ namespace Rootlesnake.Input
             }
         }
         public DebugActions @Debug => new DebugActions(this);
-        private int m_ControlsSchemeIndex = -1;
-        public InputControlScheme ControlsScheme
+        private int m_GamepadSchemeIndex = -1;
+        public InputControlScheme GamepadScheme
         {
             get
             {
-                if (m_ControlsSchemeIndex == -1) m_ControlsSchemeIndex = asset.FindControlSchemeIndex("Controls");
-                return asset.controlSchemes[m_ControlsSchemeIndex];
+                if (m_GamepadSchemeIndex == -1) m_GamepadSchemeIndex = asset.FindControlSchemeIndex("Gamepad");
+                return asset.controlSchemes[m_GamepadSchemeIndex];
+            }
+        }
+        private int m_KeyboardSchemeIndex = -1;
+        public InputControlScheme KeyboardScheme
+        {
+            get
+            {
+                if (m_KeyboardSchemeIndex == -1) m_KeyboardSchemeIndex = asset.FindControlSchemeIndex("Keyboard");
+                return asset.controlSchemes[m_KeyboardSchemeIndex];
             }
         }
         public interface IRootActions
         {
             void OnMove(InputAction.CallbackContext context);
             void OnInteract(InputAction.CallbackContext context);
+            void OnStart(InputAction.CallbackContext context);
+            void OnToMainMenu(InputAction.CallbackContext context);
+            void OnUIDown(InputAction.CallbackContext context);
+            void OnUIUp(InputAction.CallbackContext context);
         }
         public interface IDebugActions
         {

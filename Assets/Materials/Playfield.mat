@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Playfield
-  m_Shader: {fileID: -6465566751694194690, guid: df1a1c24dbccd2a4989baeb32d2a929f, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 2dcf1a8db429bac4d9ef9fceaeab6952, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -48,7 +48,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 56cfc2ccc03480645b68ee59b09a2fb1, type: 3}
+        m_Texture: {fileID: 2800000, guid: b028a23f809e4704b9dd6eec8ce57537, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -125,17 +125,17 @@ Material:
     - _Input_3: {r: 0, g: 1, b: 0, a: 1}
     - _Input_4: {r: 0, g: 1, b: 1, a: 1}
     - _Input_5: {r: 1, g: 0, b: 0, a: 1}
-    - _Input_6: {r: 1, g: 0, b: 1, a: 1}
-    - _Input_7: {r: 1, g: 1, b: 0, a: 1}
+    - _Input_6: {r: 1, g: 1, b: 0, a: 1}
+    - _Input_7: {r: 1, g: 0, b: 1, a: 1}
     - _Input_8: {r: 1, g: 1, b: 1, a: 1}
-    - _Input_9: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _Input_9: {r: 1, g: 1, b: 1, a: 0}
     - _Output_1: {r: 0.03899999, g: 0.05554896, b: 0.25, a: 1}
     - _Output_2: {r: 0, g: 0, b: 1, a: 1}
     - _Output_3: {r: 0, g: 1, b: 0, a: 1}
     - _Output_4: {r: 0, g: 1, b: 1, a: 1}
     - _Output_5: {r: 1, g: 0, b: 0, a: 1}
-    - _Output_6: {r: 1, g: 0, b: 1, a: 1}
-    - _Output_7: {r: 1, g: 1, b: 0, a: 1}
+    - _Output_6: {r: 0.9763727, g: 4, b: 0, a: 1}
+    - _Output_7: {r: 0, g: 0, b: 0, a: 1}
     - _Output_8: {r: 1, g: 1, b: 1, a: 1}
     - _Output_9: {r: 0.9763727, g: 4, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}

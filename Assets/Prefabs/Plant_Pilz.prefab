@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3671885973107887556}
   - component: {fileID: 3671885973107887419}
+  - component: {fileID: 102286177385562267}
   m_Layer: 0
   m_Name: Plant_Pilz
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   m_Children:
   - {fileID: 2727772751978764711}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3671885973107887419
 MonoBehaviour:
@@ -55,6 +56,36 @@ MonoBehaviour:
   - {fileID: 7417028973667603066}
   plantProgress: 0
   maxProgress: 100
+--- !u!114 &102286177385562267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3671885973107887418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1660221850
+      Data2: 1288907211
+      Data3: -1649664879
+      Data4: -1373320017
+    Path: event:/Nutrient_Collect
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &3671885973122900089
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70,6 +101,18 @@ PrefabInstance:
     - target: {fileID: -7552582706839291426, guid: 79a99d822bfea2d42949476041bad482, type: 3}
       propertyPath: m_RootOrder
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 79a99d822bfea2d42949476041bad482, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 79a99d822bfea2d42949476041bad482, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 79a99d822bfea2d42949476041bad482, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 79a99d822bfea2d42949476041bad482, type: 3}
       propertyPath: m_LocalPosition.x
@@ -111,6 +154,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 79a99d822bfea2d42949476041bad482, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -6882416816649960238, guid: 79a99d822bfea2d42949476041bad482, type: 3}
       propertyPath: m_Color.b
       value: 0.85098046
@@ -123,6 +170,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6882416816649960238, guid: 79a99d822bfea2d42949476041bad482, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9622e8682058079498fe4293f055e303, type: 2}
     - target: {fileID: -2812604148055266962, guid: 79a99d822bfea2d42949476041bad482, type: 3}
       propertyPath: m_Color.b
       value: 0.85098046
@@ -135,6 +186,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2812604148055266962, guid: 79a99d822bfea2d42949476041bad482, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9622e8682058079498fe4293f055e303, type: 2}
     - target: {fileID: -1937556458802027635, guid: 79a99d822bfea2d42949476041bad482, type: 3}
       propertyPath: m_Color.b
       value: 0.85098046
@@ -147,6 +202,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1937556458802027635, guid: 79a99d822bfea2d42949476041bad482, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9622e8682058079498fe4293f055e303, type: 2}
     - target: {fileID: -1234753209315301370, guid: 79a99d822bfea2d42949476041bad482, type: 3}
       propertyPath: m_Color.b
       value: 0.85098046
@@ -159,6 +218,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1234753209315301370, guid: 79a99d822bfea2d42949476041bad482, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9622e8682058079498fe4293f055e303, type: 2}
     - target: {fileID: 1647155537603927142, guid: 79a99d822bfea2d42949476041bad482, type: 3}
       propertyPath: m_Color.b
       value: 0.85098046
@@ -171,6 +234,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1647155537603927142, guid: 79a99d822bfea2d42949476041bad482, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9622e8682058079498fe4293f055e303, type: 2}
     - target: {fileID: 6876660771906375819, guid: 79a99d822bfea2d42949476041bad482, type: 3}
       propertyPath: m_Color.b
       value: 0.85098046
@@ -183,6 +250,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6876660771906375819, guid: 79a99d822bfea2d42949476041bad482, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9622e8682058079498fe4293f055e303, type: 2}
     - target: {fileID: 8195892739891630877, guid: 79a99d822bfea2d42949476041bad482, type: 3}
       propertyPath: m_Color.b
       value: 0.85098046
@@ -195,6 +266,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8195892739891630877, guid: 79a99d822bfea2d42949476041bad482, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9622e8682058079498fe4293f055e303, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

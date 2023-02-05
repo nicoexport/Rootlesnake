@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32a684700b1bd5b4690a518ffedc1251, type: 3}
+  m_Name: PC_Flower
+  m_EditorClassIdentifier: 
+  effect: {fileID: 11400000}
+  prefab: {fileID: 3441616254432501635, guid: 8097c88abffc9ca439004cee055a1072, type: 3}
+  sprite: {fileID: 2363127522629950914, guid: 63681b6434bd38c44987a54ef8c09f40, type: 3}

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Rootlesnake.Plants;
 using Slothsoft.UnityExtensions;
 using UnityEngine;
 
@@ -22,19 +23,15 @@ namespace Rootlesnake.Player {
                     3 => GameManager.instance.collisionColors.playerFour,
                     _ => throw new NotImplementedException(),
                 };
-                deadColor = value switch {
-                    0 => GameManager.instance.collisionColors.deadPlayerOne,
-                    1 => GameManager.instance.collisionColors.deadPlayerTwo,
-                    2 => GameManager.instance.collisionColors.deadPlayerThree,
-                    3 => GameManager.instance.collisionColors.deadPlayerFour,
-                    _ => throw new NotImplementedException(),
-                };
+                deadColor = GameManager.instance.collisionColors.deadPlayer;
             }
         }
 
         public Color aliveColor { get; private set; }
 
         public Color deadColor { get; private set; }
+
+        public GrowingPlant myGrowingPlant;
 
         [SerializeField]
         bool onlyOneChildSplit = false;
@@ -96,6 +93,10 @@ namespace Rootlesnake.Player {
                     onAddBranch?.Invoke(branch);
                 }
             }
+        }
+
+        public void Feed() {
+            myGrowingPlant.UpdatePlant();
         }
     }
 }

@@ -1,3 +1,5 @@
+using DefaultNamespace;
+using Rootlesnake.Plants;
 using UnityEngine;
 
 namespace Rootlesnake.Player {
@@ -5,11 +7,12 @@ namespace Rootlesnake.Player {
         [SerializeField]
         Root m_root = new();
 
-        public IPlant root => m_root;
+        [SerializeField]
+        Vector3 plantOffset = new Vector3(0f, 1f, 0f);
 
-        void Start() {
-            m_root.Reset(transform.position);
-        }
+        GrowingPlant growingPlant;
+
+        public IPlant root => m_root;
 
         void OnEnable() {
             GameManager.onMoveRoots += m_root.Update;
@@ -18,8 +21,17 @@ namespace Rootlesnake.Player {
             GameManager.onMoveRoots -= m_root.Update;
         }
 
-        public void SetPlayerIndex(int playerIndex) {
+        public void SpawnPlant(int playerIndex, GameObject prefab) {
             m_root.playerIndex = playerIndex;
+            m_root.Reset(transform.position);
+            var instance = Instantiate(
+                prefab,
+                transform.position + plantOffset, Quaternion.identity
+            );
+            m_root.myGrowingPlant = instance.GetComponent<GrowingPlant>();
+            m_root.myGrowingPlant.SetColor(m_root.aliveColor);
+
+            AudioManager.instance.PlayAudio(Audio.RootGrow);
         }
     }
 }

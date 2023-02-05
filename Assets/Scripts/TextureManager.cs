@@ -9,19 +9,22 @@ namespace Rootlesnake {
         [SerializeField]
         Vector2Int m_playfieldSize = new(192, 81);
         public Vector2Int playfieldSize => m_playfieldSize;
-        [SerializeField]
-        Vector2Int m_renderSize = new(960, 405);
-        public Vector2Int renderSize => m_renderSize;
-        [SerializeField]
-        TextureFormat renderFormat = TextureFormat.RGBA32;
 
         [SerializeField, Expandable]
         Texture2D m_collisionTexture;
         public Texture2D collisionTexture => m_collisionTexture;
+        public Vector2Int collisionSize => new(m_collisionTexture.width, m_collisionTexture.height);
+
+        bool isDirty = false;
 
         void Awake() {
             instance = this;
+        }
+        void Start() {
+            m_collisionTexture.SetPixels(Enumerable.Repeat(GameManager.instance.collisionColors.background, collisionSize.x * collisionSize.y).ToArray());
+            m_collisionTexture.Apply();
 
+            /*
             m_collisionTexture = new Texture2D(m_renderSize.x, m_renderSize.y, renderFormat, false) {
                 name = "Playfield",
                 filterMode = FilterMode.Point,
@@ -30,6 +33,7 @@ namespace Rootlesnake {
             };
             m_collisionTexture.SetPixels(Enumerable.Repeat(new Color(0, 0, 0, 0), renderSize.x * renderSize.y).ToArray());
             m_collisionTexture.Apply();
+            //*/
         }
 
         void OnEnable() {
@@ -40,12 +44,6 @@ namespace Rootlesnake {
         void OnDisable() {
             GameManager.onPreMoveRoots -= PreMoveRoots;
             GameManager.onPostMoveRoots -= PostMoveRoots;
-        }
-
-        void OnDestroy() {
-            if (m_collisionTexture) {
-                Destroy(m_collisionTexture);
-            }
         }
 
         void PreMoveRoots() {
@@ -75,14 +73,15 @@ namespace Rootlesnake {
         public Vector2Int WorldSpaceToPixelSpace(in Vector3 position) {
             var normalizedPosition = WorldSpaceToRenderTextureSpace(position);
 
-            normalizedPosition.x *= renderSize.x;
-            normalizedPosition.y *= renderSize.y;
+            normalizedPosition.x *= collisionSize.x;
+            normalizedPosition.y *= collisionSize.y;
 
             return Vector2Int.RoundToInt(normalizedPosition);
         }
 
         public void DrawDotPixelSpace(in Color color, in Vector2Int position) {
             collisionTexture.SetPixel(position.x, position.y, color);
+            isDirty = true;
         }
 
         void DrawDotWorldSpace(in Color color, in Vector3 worldPosition) {
@@ -112,9 +111,9 @@ namespace Rootlesnake {
         }
 
         public void DrawLinePixelSpace(in Color color, in Vector2Int startPosition, in Vector2Int targetPosition) {
-            collisionTexture.SetPixel(startPosition.x, startPosition.y, color);
+            DrawDotPixelSpace(color, startPosition);
             if (startPosition != targetPosition) {
-                collisionTexture.SetPixel(targetPosition.x, targetPosition.y, color);
+                DrawDotPixelSpace(color, targetPosition);
             }
         }
 
@@ -131,8 +130,6 @@ namespace Rootlesnake {
         }
 
         void PostMoveRoots() {
-            m_collisionTexture.Apply();
-
             /*
             GL.End();
 
@@ -142,9 +139,16 @@ namespace Rootlesnake {
             //*/
         }
 
-        public bool TryToHitSomething(in Vector3 worldStartPosition, in Vector3 worldMotion, out Color hitColor) {
+        void LateUpdate() {
+            if (isDirty) {
+                isDirty = false;
+                m_collisionTexture.Apply();
+            }
+        }
+
+        public bool TryToHitSomething(in Vector3 worldStartPosition, in Vector3 worldMotion, out bool isNutrient) {
             //get all Pixels inbetween the currentPosition and the position after movin
-            hitColor = Color.black;
+            isNutrient = false;
 
             var worldTargetPosition = worldStartPosition + worldMotion;
 
@@ -172,7 +176,7 @@ namespace Rootlesnake {
             for (int i = 0; i <= steps; i++) {
                 var testPosition = new Vector2Int((int)x, (int)y);
                 if (testPosition != startPosition) {
-                    if (TryToHitSomething(testPosition, out hitColor)) {
+                    if (TryToHitSomething(testPosition, out isNutrient)) {
                         return true;
                     }
                 }
@@ -183,9 +187,10 @@ namespace Rootlesnake {
             return false;
         }
 
-        public bool TryToHitSomething(in Vector2Int pixelPosition, out Color hitColor) {
-            hitColor = m_collisionTexture.GetPixel(pixelPosition.x, pixelPosition.y);
-            return hitColor.a > 0.5f;
+        public bool TryToHitSomething(in Vector2Int pixelPosition, out bool isNutrient) {
+            var hitColor = m_collisionTexture.GetPixel(pixelPosition.x, pixelPosition.y);
+            isNutrient = GameManager.instance.IsNutrient(hitColor);
+            return !GameManager.instance.IsBackground(hitColor);
         }
 
         public bool IsOutOfBounds(Vector2Int position) {

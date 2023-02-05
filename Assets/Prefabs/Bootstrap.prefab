@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8742659850671164514}
   - component: {fileID: 8742659850671164516}
   - component: {fileID: 2090396967645898643}
+  - component: {fileID: 3354274669975863937}
   m_Layer: 0
   m_Name: Bootstrap
   m_TagString: Untagged
@@ -48,6 +49,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_playfieldColors: {fileID: 11400000, guid: efadb40110822a048ba4aac332d75a8b, type: 2}
   m_collisionColors: {fileID: 11400000, guid: 1fb5b816a4592b24c945ad2c1d633164, type: 2}
+  plants:
+  - {fileID: 11400000, guid: 1b680399790712443a34a511f6285bec, type: 2}
+  - {fileID: 11400000, guid: 3749014ea80d52242830722c552011ac, type: 2}
+  - {fileID: 11400000, guid: eeee925137f642b4aa9d10476e321966, type: 2}
+  - {fileID: 11400000, guid: 211027e143233ce4b80e6e34ddd3ec7b, type: 2}
 --- !u!114 &8742659850671164516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,9 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playfieldSize: {x: 192, y: 81}
-  m_renderSize: {x: 960, y: 405}
-  renderFormat: 13
-  m_collisionTexture: {fileID: 0}
+  m_collisionTexture: {fileID: 2800000, guid: b028a23f809e4704b9dd6eec8ce57537, type: 3}
 --- !u!114 &2090396967645898643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,3 +83,15 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 562d526e835019942904b7d76dadd3dd, type: 2}
   inputString: _Input_
   outputString: _Output_
+--- !u!114 &3354274669975863937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8742659850671164513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a95eea1db99d45d29c39fa507415bd54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
