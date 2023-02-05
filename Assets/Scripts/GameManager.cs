@@ -11,6 +11,8 @@ namespace Rootlesnake {
         [SerializeField, Expandable]
         ColorSettings m_collisionColors;
         public ColorSettings collisionColors => m_collisionColors;
+        [SerializeField]
+        public PlantConfig[] plants = Array.Empty<PlantConfig>();
 
         public static GameManager instance { get; private set; }
 
