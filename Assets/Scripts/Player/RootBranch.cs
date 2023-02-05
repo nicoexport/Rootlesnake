@@ -26,9 +26,16 @@ namespace Rootlesnake.Player {
 
         [Header("Config")]
         [SerializeField]
-        float movementSpeed = UnityRandom.Range(1, 10);
+        float movementSpeed = 5;
         [SerializeField]
-        float rotationSmoothing = 1;
+        float defaultMovementSpeed = 10;
+        [SerializeField]
+        float speedSmoothing = 2;
+        float acceleration;
+        float feedSpeedMultiplier => UnityRandom.Range(1.5f, 3f);
+        float splitSpeedMultiplier => UnityRandom.Range(0.125f, 0.5f);
+        [SerializeField]
+        float rotationSmoothing = 0.5f;
         [SerializeField]
         float maxRotationSpeed = 100;
         [SerializeField]
@@ -91,6 +98,7 @@ namespace Rootlesnake.Player {
         public IPlant root { get; private set; }
 
         public void Update(float deltaTime) {
+            movementSpeed = Mathf.SmoothDamp(movementSpeed, defaultMovementSpeed, ref acceleration, speedSmoothing, float.PositiveInfinity, deltaTime);
             angle = Mathf.SmoothDampAngle(angle, intendedAngle, ref rotationSpeed, rotationSmoothing, maxRotationSpeed, deltaTime);
 
             var motion = velocity * deltaTime;
@@ -108,6 +116,7 @@ namespace Rootlesnake.Player {
 
             if (TextureManager.instance.TryToHitSomething(newPosition2D, out bool isNutrient)) {
                 if (isNutrient) {
+                    movementSpeed *= feedSpeedMultiplier;
                     root.Feed();
                 } else {
                     isAlive = false;
@@ -133,6 +142,7 @@ namespace Rootlesnake.Player {
             float rightAngle = angle - splitAngle;
             angle = intendedAngle = leftAngle;
             previousAngle = integerAngle - 1;
+            movementSpeed *= splitSpeedMultiplier;
 
             AudioManager.instance.PlayAudio(EffectCue.RootSplit);
             ParticleManager.instance.PlayAudio(EffectCue.RootSplit, m_head.position3D);
