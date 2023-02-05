@@ -1,3 +1,4 @@
+using System.Linq;
 using MyBox;
 using Slothsoft.UnityExtensions;
 using UnityEngine;
@@ -9,8 +10,11 @@ namespace Rootlesnake {
         [SerializeField]
         Vector2Int m_playSpaceSize = new(192, 81);
         public Vector2Int playSpaceSize => m_playSpaceSize;
+        [SerializeField]
+        Vector2Int m_collisionSize = new(960, 405);
+        public Vector2Int collisionSize => m_collisionSize;
 
-        [SerializeField, Expandable]
+        [SerializeField, ReadOnly]
         RenderTexture targetTexture;
         [SerializeField, ReadOnly]
         RenderTexture previousTexture;
@@ -30,13 +34,15 @@ namespace Rootlesnake {
         void Awake() {
             instance = this;
 
-            m_collisionTexture = new Texture2D(targetTexture.width, targetTexture.height, renderFormat, false) {
+            m_collisionTexture = new Texture2D(m_collisionSize.x, m_collisionSize.y, renderFormat, false) {
                 name = "Playfield",
                 filterMode = FilterMode.Point,
                 wrapMode = TextureWrapMode.Clamp,
                 anisoLevel = 0,
             };
-            renderRect = new Rect(0, 0, targetTexture.width, targetTexture.height);
+            m_collisionTexture.SetPixels(Enumerable.Repeat(new Color(0, 0, 0, 0), collisionSize.x * collisionSize.y).ToArray());
+            m_collisionTexture.Apply();
+            renderRect = new Rect(0, 0, collisionSize.y, collisionSize.y);
             renderTexturePixelSize = new(1f / renderRect.width, 1f / renderRect.height, 0);
         }
 
@@ -57,6 +63,7 @@ namespace Rootlesnake {
         }
 
         void PreMoveRoots() {
+            /*
             previousTexture = RenderTexture.active;
             RenderTexture.active = targetTexture;
             m_collisionTexture.ReadPixels(renderRect, 0, 0);
@@ -67,6 +74,7 @@ namespace Rootlesnake {
             GL.LoadOrtho();
 
             GL.Begin(GL.LINES);
+            //*/
         }
 
         Vector3 WorldSpaceToRenderTextureSpace(in Vector3 position) {
@@ -81,10 +89,16 @@ namespace Rootlesnake {
         Vector2Int WorldSpaceToTexture2DSpace(in Vector3 position) {
             var normalizedPosition = WorldSpaceToRenderTextureSpace(position);
 
-            return Vector2Int.RoundToInt(Vector2.Scale(normalizedPosition, renderRect.size));
+            normalizedPosition.x *= collisionSize.x;
+            normalizedPosition.y *= collisionSize.y;
+
+            return Vector2Int.RoundToInt(normalizedPosition);
         }
 
         public void DrawPixelWorldSpace(in Color color, in Vector3 worldPosition) {
+            var position = WorldSpaceToTexture2DSpace(worldPosition);
+            collisionTexture.SetPixel(position.x, position.y, color);
+            /*
             var previousTexture = RenderTexture.active;
             RenderTexture.active = targetTexture;
 
@@ -104,23 +118,35 @@ namespace Rootlesnake {
             GL.PopMatrix();
 
             RenderTexture.active = previousTexture;
+            //*/
         }
 
         public void DrawLineWorldSpace(in Color color, in Vector3 worldStartPosition, in Vector3 worldTargetPosition) {
+            var startPosition = WorldSpaceToTexture2DSpace(worldStartPosition);
+            var targetPosition = WorldSpaceToTexture2DSpace(worldTargetPosition);
+            collisionTexture.SetPixel(startPosition.x, startPosition.y, color);
+            if (startPosition != targetPosition) {
+                collisionTexture.SetPixel(targetPosition.x, targetPosition.y, color);
+            }
+            /*
             var startPosition = WorldSpaceToRenderTextureSpace(worldStartPosition);
             var targetPosition = WorldSpaceToRenderTextureSpace(worldTargetPosition);
 
             GL.Color(color);
             GL.Vertex(startPosition);
             GL.Vertex(targetPosition);
+            //*/
         }
 
         void PostMoveRoots() {
+            m_collisionTexture.Apply();
+            /*
             GL.End();
 
             GL.PopMatrix();
 
             RenderTexture.active = previousTexture;
+            //*/
         }
 
         public bool TryToHitSomething(in Vector3 worldStartPosition, in Vector3 worldMotion, out Color hitColor) {
