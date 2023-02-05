@@ -36,8 +36,8 @@ $RECYCLE.BIN/
 !/Cubase Project/
 
 # == FMOD ==
-# Never ignore files in the fmod project folder
-!/[Ff]modproject/
+!/FMOD Project/
+/FMOD Project/.*
 
 # Never ignore DLLs in the FMOD subfolder.
 !/[Aa]ssets/Plugins/FMOD/**/lib/*
