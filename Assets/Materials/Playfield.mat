@@ -128,7 +128,7 @@ Material:
     - _Input_6: {r: 1, g: 0, b: 1, a: 1}
     - _Input_7: {r: 1, g: 1, b: 0, a: 1}
     - _Input_8: {r: 1, g: 1, b: 1, a: 1}
-    - _Input_9: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _Input_9: {r: 1, g: 1, b: 1, a: 0}
     - _Output_1: {r: 0.03899999, g: 0.05554896, b: 0.25, a: 1}
     - _Output_2: {r: 0, g: 0, b: 1, a: 1}
     - _Output_3: {r: 0, g: 1, b: 0, a: 1}
