@@ -1,3 +1,4 @@
+using Slothsoft.UnityExtensions;
 using UnityEngine;
 
 namespace Rootlesnake.Player {
