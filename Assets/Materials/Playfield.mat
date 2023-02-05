@@ -92,6 +92,7 @@ Material:
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
+    - _Color_Range: 0
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
@@ -121,15 +122,17 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Input_1: {r: 0, g: 0, b: 0, a: 1}
+    - _Input_10: {r: 0, g: 0, b: 0, a: 0}
     - _Input_2: {r: 0, g: 0, b: 1, a: 1}
     - _Input_3: {r: 0, g: 1, b: 0, a: 1}
     - _Input_4: {r: 0, g: 1, b: 1, a: 1}
     - _Input_5: {r: 1, g: 0, b: 0, a: 1}
     - _Input_6: {r: 1, g: 0, b: 1, a: 1}
     - _Input_7: {r: 1, g: 1, b: 0, a: 1}
-    - _Input_8: {r: 1, g: 1, b: 1, a: 1}
-    - _Input_9: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _Input_8: {r: 1, g: 1, b: 1, a: 0}
+    - _Input_9: {r: 1, g: 1, b: 1, a: 1}
     - _Output_1: {r: 0.03899999, g: 0.05554896, b: 0.25, a: 1}
+    - _Output_10: {r: 0, g: 0, b: 0, a: 0}
     - _Output_2: {r: 0, g: 0, b: 1, a: 1}
     - _Output_3: {r: 0, g: 1, b: 0, a: 1}
     - _Output_4: {r: 0, g: 1, b: 1, a: 1}
@@ -137,7 +140,7 @@ Material:
     - _Output_6: {r: 1, g: 0, b: 1, a: 1}
     - _Output_7: {r: 1, g: 1, b: 0, a: 1}
     - _Output_8: {r: 1, g: 1, b: 1, a: 1}
-    - _Output_9: {r: 0.9763727, g: 4, b: 0, a: 1}
+    - _Output_9: {r: 0.9763727, g: 4, b: 1.25, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &5716506424137441711

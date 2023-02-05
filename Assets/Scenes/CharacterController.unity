@@ -289,6 +289,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plant_Flower
       objectReference: {fileID: 0}
+    - target: {fileID: 3441616254432501635, guid: 8097c88abffc9ca439004cee055a1072, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3441616254432501637, guid: 8097c88abffc9ca439004cee055a1072, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -458,6 +462,10 @@ PrefabInstance:
     - target: {fileID: 3671885973107887418, guid: 64f44ac348188e0438f6a97b2e403d91, type: 3}
       propertyPath: m_Name
       value: Plant_Pilz
+      objectReference: {fileID: 0}
+    - target: {fileID: 3671885973107887418, guid: 64f44ac348188e0438f6a97b2e403d91, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3671885973107887556, guid: 64f44ac348188e0438f6a97b2e403d91, type: 3}
       propertyPath: m_RootOrder
@@ -646,6 +654,10 @@ PrefabInstance:
     - target: {fileID: 1132479996746788314, guid: b4884fdf13d3d1a4bbf3ac0dac1c50a5, type: 3}
       propertyPath: m_Name
       value: Plant_Strauch
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132479996746788314, guid: b4884fdf13d3d1a4bbf3ac0dac1c50a5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

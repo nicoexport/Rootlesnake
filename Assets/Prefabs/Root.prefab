@@ -45,8 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_root:
+    myGrowingPlant: {fileID: 0}
     onlyOneChildSplit: 0
     branches: []
+  growingPlantPrefab: {fileID: 3441616254432501634, guid: 8097c88abffc9ca439004cee055a1072, type: 3}
   references:
     version: 2
     RefIds: []
