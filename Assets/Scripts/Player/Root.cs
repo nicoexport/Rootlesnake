@@ -22,13 +22,7 @@ namespace Rootlesnake.Player {
                     3 => GameManager.instance.collisionColors.playerFour,
                     _ => throw new NotImplementedException(),
                 };
-                deadColor = value switch {
-                    0 => GameManager.instance.collisionColors.deadPlayerOne,
-                    1 => GameManager.instance.collisionColors.deadPlayerTwo,
-                    2 => GameManager.instance.collisionColors.deadPlayerThree,
-                    3 => GameManager.instance.collisionColors.deadPlayerFour,
-                    _ => throw new NotImplementedException(),
-                };
+                deadColor = GameManager.instance.collisionColors.deadPlayer;
             }
         }
 
