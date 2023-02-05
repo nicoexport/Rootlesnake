@@ -11,7 +11,7 @@ namespace Rootlesnake {
             instance = this;
         }
 
-        EventInstance music;
+        static EventInstance music;
 
         public void PlayAudio(EffectCue audio) {
             switch (audio) {

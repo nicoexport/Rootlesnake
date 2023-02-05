@@ -187,6 +187,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1133752723501383285}
+  plantLineupContainer: {fileID: 0}
+  firstSelectedButton: {fileID: 0}
+  onRoundStop:
+    m_PersistentCalls:
+      m_Calls: []
   playerAnchors:
   - {fileID: 1133752723954258909}
   - {fileID: 1133752723327631383}

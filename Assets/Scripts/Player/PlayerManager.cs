@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace Rootlesnake.Player {
@@ -17,7 +18,7 @@ namespace Rootlesnake.Player {
         [SerializeField]
         public GameObject firstSelectedButton;
         [SerializeField]
-        GameObject winScreen;
+        UnityEvent onRoundStop = new();
         [SerializeField]
         Transform[] playerAnchors = Array.Empty<Transform>();
 
@@ -78,13 +79,13 @@ namespace Rootlesnake.Player {
         void Update() {
             if (isRunning) {
                 if (totalPlayerCount == 1 && livingPlayerCount == 0) {
-                    Debug.Log("Singleplayer Stop");
+                    onRoundStop.Invoke();
                     GameManager.instance.StopRound();
                     return;
 
                 }
                 if (totalPlayerCount > 1 && livingPlayerCount <= 1) {
-                    Debug.Log("MUltiplayerplayer Stop");
+                    onRoundStop.Invoke();
                     GameManager.instance.StopRound();
                 }
             }

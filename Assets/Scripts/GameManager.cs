@@ -28,6 +28,10 @@ namespace Rootlesnake {
             instance = this;
         }
 
+        void Start() {
+            AudioManager.instance.PlayAudio(EffectCue.MenuBGM);
+        }
+
         void FixedUpdate() {
             onPreMoveRoots?.Invoke();
             onMoveRoots?.Invoke(Time.deltaTime);
@@ -64,6 +68,7 @@ namespace Rootlesnake {
 
         public void StopRound() {
             onStopRound?.Invoke();
+            AudioManager.instance.PlayAudio(EffectCue.MenuBGM);
         }
     }
 }
