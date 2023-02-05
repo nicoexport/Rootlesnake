@@ -60,19 +60,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1a12507a3cd0154eb1816a083fbc685, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playSpaceSize: {x: 192, y: 81}
-  m_collisionSize: {x: 960, y: 405}
-  targetTexture: {fileID: 8400000, guid: 4dfb7efaf53757842b950a135710eee8, type: 2}
-  previousTexture: {fileID: 0}
-  renderFormat: 4
-  renderMaterial: {fileID: 2100000, guid: 0a904a8f0801b454a9eb3ad3542697bc, type: 2}
-  renderRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
-  renderTexturePixelSize: {x: 0, y: 0, z: 0}
+  m_playfieldSize: {x: 192, y: 81}
+  m_renderSize: {x: 960, y: 405}
+  renderFormat: 13
   m_collisionTexture: {fileID: 0}
 --- !u!114 &2090396967645898643
 MonoBehaviour:
