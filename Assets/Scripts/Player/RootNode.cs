@@ -8,19 +8,15 @@ namespace Rootlesnake.Player {
         IPlantNode m_parent;
         public IPlantNode parent => m_parent;
 
-        [SerializeField]
-        Vector3 m_position;
-        public Vector3 position {
-            get => m_position;
-            set => m_position = value;
-        }
+        public Vector3 position3D { get; set; }
+        public Vector2Int position2D => TextureManager.instance.WorldSpaceToPixelSpace(position3D);
 
         public RootNode(Vector3 position) {
-            m_position = position;
+            position3D = position;
         }
 
         public RootNode CreateChild(Vector3 offset) {
-            return new(position + offset) {
+            return new(position3D + offset) {
                 m_parent = this
             };
         }

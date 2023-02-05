@@ -72,7 +72,7 @@ namespace Rootlesnake {
 
             return normalizedPosition;
         }
-        Vector2Int WorldSpaceToPixelSpace(in Vector3 position) {
+        public Vector2Int WorldSpaceToPixelSpace(in Vector3 position) {
             var normalizedPosition = WorldSpaceToRenderTextureSpace(position);
 
             normalizedPosition.x *= renderSize.x;
@@ -81,9 +81,12 @@ namespace Rootlesnake {
             return Vector2Int.RoundToInt(normalizedPosition);
         }
 
-        public void DrawPixelWorldSpace(in Color color, in Vector3 worldPosition) {
-            var position = WorldSpaceToPixelSpace(worldPosition);
+        public void DrawDotPixelSpace(in Color color, in Vector2Int position) {
             collisionTexture.SetPixel(position.x, position.y, color);
+        }
+
+        void DrawDotWorldSpace(in Color color, in Vector3 worldPosition) {
+            DrawDotPixelSpace(color, WorldSpaceToPixelSpace(worldPosition));
 
             /*
             var previousTexture = RenderTexture.active;
@@ -108,13 +111,15 @@ namespace Rootlesnake {
             //*/
         }
 
-        public void DrawLineWorldSpace(in Color color, in Vector3 worldStartPosition, in Vector3 worldTargetPosition) {
-            var startPosition = WorldSpaceToPixelSpace(worldStartPosition);
-            var targetPosition = WorldSpaceToPixelSpace(worldTargetPosition);
+        public void DrawLinePixelSpace(in Color color, in Vector2Int startPosition, in Vector2Int targetPosition) {
             collisionTexture.SetPixel(startPosition.x, startPosition.y, color);
             if (startPosition != targetPosition) {
                 collisionTexture.SetPixel(targetPosition.x, targetPosition.y, color);
             }
+        }
+
+        void DrawLineWorldSpace(in Color color, in Vector3 worldStartPosition, in Vector3 worldTargetPosition) {
+            DrawLinePixelSpace(color, WorldSpaceToPixelSpace(worldStartPosition), WorldSpaceToPixelSpace(worldTargetPosition));
             /*
             var startPosition = WorldSpaceToRenderTextureSpace(worldStartPosition);
             var targetPosition = WorldSpaceToRenderTextureSpace(worldTargetPosition);
@@ -178,8 +183,8 @@ namespace Rootlesnake {
             return false;
         }
 
-        bool TryToHitSomething(in Vector2Int texturePosition, out Color hitColor) {
-            hitColor = m_collisionTexture.GetPixel(texturePosition.x, texturePosition.y);
+        public bool TryToHitSomething(in Vector2Int pixelPosition, out Color hitColor) {
+            hitColor = m_collisionTexture.GetPixel(pixelPosition.x, pixelPosition.y);
             return hitColor.a > 0.5f;
         }
 

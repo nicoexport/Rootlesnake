@@ -6,9 +6,6 @@ using UnityRandom = UnityEngine.Random;
 namespace Rootlesnake.Player {
     [Serializable]
     sealed class RootBranch : IPlantBranch {
-        public event Action<Vector3, Vector3> onUpdateHeadPosition;
-        public event Action onUpdateNodePositions;
-        public event Action onUpdateNodeCount;
 
         public bool isAlive { get; private set; }
 
@@ -87,6 +84,10 @@ namespace Rootlesnake.Player {
         }
         public Vector3 velocity => forward * movementSpeed;
 
+        Color color => isAlive
+            ? root.aliveColor
+            : root.deadColor;
+
         public IPlant root { get; private set; }
 
         public void Update(float deltaTime) {
@@ -94,26 +95,33 @@ namespace Rootlesnake.Player {
 
             var motion = velocity * deltaTime;
 
-            if (TextureManager.instance.TryToHitSomething(m_head.position, motion, out var hitColor)) {
+            var newPosition3D = m_head.position3D + motion;
+            var newPosition2D = TextureManager.instance.WorldSpaceToPixelSpace(newPosition3D);
+
+            if (m_head.position2D == newPosition2D) {
+                // we move, but enough to have to draw or check for collision
+                m_head.position3D = newPosition3D;
+                return;
+            }
+
+            if (TextureManager.instance.TryToHitSomething(newPosition2D, out var hitColor)) {
                 if (GameManager.instance.IsNutrient(hitColor)) {
                     Debug.Log("Yummy!");
                 } else {
                     isAlive = false;
-                    onUpdateHeadPosition?.Invoke(m_head.position, m_head.position + motion);
+                    TextureManager.instance.DrawDotPixelSpace(color, newPosition2D);
                     return;
                 }
             }
 
-            onUpdateHeadPosition?.Invoke(m_head.position, m_head.position + motion);
+            TextureManager.instance.DrawDotPixelSpace(color, newPosition2D);
 
             if (previousAngle == integerAngle) {
-                m_head.position += motion;
-                onUpdateNodePositions?.Invoke();
+                m_head.position3D += motion;
             } else {
                 nodeCount++;
                 m_head = m_head.CreateChild(motion);
                 previousAngle = integerAngle;
-                onUpdateNodeCount?.Invoke();
             }
         }
 
