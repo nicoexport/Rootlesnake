@@ -16,8 +16,6 @@ MonoBehaviour:
   playerTwo: {r: 0, g: 0, b: 1, a: 1}
   playerThree: {r: 0, g: 1, b: 0, a: 1}
   playerFour: {r: 0, g: 1, b: 1, a: 1}
-  deadPlayerOne: {r: 1, g: 0, b: 0, a: 1}
-  deadPlayerTwo: {r: 1, g: 0, b: 1, a: 1}
-  deadPlayerThree: {r: 1, g: 1, b: 0, a: 1}
-  deadPlayerFour: {r: 1, g: 1, b: 1, a: 1}
+  deadPlayer: {r: 1, g: 0, b: 0, a: 1}
   nutrient: {r: 0.9763727, g: 4, b: 0, a: 1}
+  background: {r: 0, g: 0, b: 0, a: 1}
