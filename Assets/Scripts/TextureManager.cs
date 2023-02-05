@@ -15,8 +15,13 @@ namespace Rootlesnake {
         public Texture2D collisionTexture => m_collisionTexture;
         public Vector2Int collisionSize => new(m_collisionTexture.width, m_collisionTexture.height);
 
+        bool isDirty = false;
+
         void Awake() {
             instance = this;
+
+            m_collisionTexture.SetPixels(Enumerable.Repeat(new Color(0, 0, 0, 0), collisionSize.x * collisionSize.y).ToArray());
+            m_collisionTexture.Apply();
 
             /*
             m_collisionTexture = new Texture2D(m_renderSize.x, m_renderSize.y, renderFormat, false) {
@@ -75,6 +80,7 @@ namespace Rootlesnake {
 
         public void DrawDotPixelSpace(in Color color, in Vector2Int position) {
             collisionTexture.SetPixel(position.x, position.y, color);
+            isDirty = true;
         }
 
         void DrawDotWorldSpace(in Color color, in Vector3 worldPosition) {
@@ -104,9 +110,9 @@ namespace Rootlesnake {
         }
 
         public void DrawLinePixelSpace(in Color color, in Vector2Int startPosition, in Vector2Int targetPosition) {
-            collisionTexture.SetPixel(startPosition.x, startPosition.y, color);
+            DrawDotPixelSpace(color, startPosition);
             if (startPosition != targetPosition) {
-                collisionTexture.SetPixel(targetPosition.x, targetPosition.y, color);
+                DrawDotPixelSpace(color, targetPosition);
             }
         }
 
@@ -123,8 +129,6 @@ namespace Rootlesnake {
         }
 
         void PostMoveRoots() {
-            m_collisionTexture.Apply();
-
             /*
             GL.End();
 
@@ -132,6 +136,13 @@ namespace Rootlesnake {
 
             RenderTexture.active = previousTexture;
             //*/
+        }
+
+        void LateUpdate() {
+            if (isDirty) {
+                isDirty = false;
+                m_collisionTexture.Apply();
+            }
         }
 
         public bool TryToHitSomething(in Vector3 worldStartPosition, in Vector3 worldMotion, out Color hitColor) {
