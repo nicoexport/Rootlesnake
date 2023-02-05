@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using DefaultNamespace;
 using UnityEngine;
 using UnityRandom = UnityEngine.Random;
 
@@ -109,7 +108,6 @@ namespace Rootlesnake.Player {
 
             if (TextureManager.instance.TryToHitSomething(newPosition2D, out bool isNutrient)) {
                 if (isNutrient) {
-                    Debug.Log("Yummy!");
                     root.Feed();
                 } else {
                     isAlive = false;

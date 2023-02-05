@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace DefaultNamespace {
+namespace Rootlesnake {
     sealed class AudioManager : MonoBehaviour {
 
         public static AudioManager instance { get; private set; }

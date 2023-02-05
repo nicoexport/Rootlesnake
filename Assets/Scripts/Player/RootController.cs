@@ -1,4 +1,3 @@
-using DefaultNamespace;
 using Rootlesnake.Plants;
 using UnityEngine;
 

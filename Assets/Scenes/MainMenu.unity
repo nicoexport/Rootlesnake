@@ -453,6 +453,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 912cf2d75f0d03a468d213142cd5cfe7, type: 2}
+        m_TargetAssemblyTypeName: Rootlesnake.Effects.ScriptableEffect, Rootlesnake
+        m_MethodName: Invoke
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &288068986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1326,6 +1338,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 2b61f7675f1bac64a8f5c103c3e834d9, type: 2}
+        m_TargetAssemblyTypeName: Rootlesnake.Effects.ScriptableEffect, Rootlesnake
+        m_MethodName: Invoke
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1316300901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1978,6 +2002,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 60c5964430e965349ae4f5769b3ab739, type: 2}
+        m_TargetAssemblyTypeName: Rootlesnake.Effects.ScriptableEffect, Rootlesnake
+        m_MethodName: Invoke
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1722741134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2270,6 +2306,18 @@ MonoBehaviour:
       - m_Target: {fileID: 11400000, guid: 54998e3c08262644992fbae03f99da6f, type: 2}
         m_TargetAssemblyTypeName: Rootlesnake.Effects.InvokeGameManager, Rootlesnake
         m_MethodName: Exit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 1ead2a975e43ed6488abc53af6d9bfa0, type: 2}
+        m_TargetAssemblyTypeName: Rootlesnake.Effects.ScriptableEffect, Rootlesnake
+        m_MethodName: Invoke
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

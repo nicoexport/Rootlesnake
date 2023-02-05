@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32a684700b1bd5b4690a518ffedc1251, type: 3}
   m_Name: PC_Weed
   m_EditorClassIdentifier: 
+  effect: {fileID: 11400000}
   prefab: {fileID: 3137300576645267814, guid: 565fd8eff2ef4204d807937bce01149e, type: 3}
-  sprite: {fileID: 21300000, guid: 09fd0fd0e9cce5642bbac179a1b40aa1, type: 3}
+  sprite: {fileID: 21300000, guid: 75fc0acf1479949418f651e6813d9b47, type: 3}
