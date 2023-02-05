@@ -9,13 +9,15 @@ namespace Rootlesnake.Player {
         [SerializeField]
         GrowingPlant growingPlantPrefab;
 
+        [SerializeField] private Vector3 plantOffset = new Vector3(0f, 1f, 0f);
+
         private GrowingPlant growingPlant;
 
         public IPlant root => m_root;
 
         void Start() {
             m_root.Reset(transform.position);
-            m_root.myGrowingPlant = Instantiate(growingPlantPrefab, transform.position, Quaternion.identity);
+            m_root.myGrowingPlant = Instantiate(growingPlantPrefab, transform.position + plantOffset, Quaternion.identity);
             growingPlant = m_root.myGrowingPlant;
             growingPlant.SetColor(m_root.aliveColor);
             Debug.Log("myGrowingPlant");

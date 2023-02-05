@@ -26,9 +26,12 @@ namespace Rootlesnake.Plants {
         }
 
         public void SetColor(Color color) {
+            
+            
             foreach (var stage in plantStages) {
-                if (stage.TryGetComponent(out SpriteRenderer rend)) {
-                    rend.color = color;
+                if (stage.TryGetComponent(out Renderer rend)) {
+                    var tempCol = GameManager.instance.CollisionColorToPlayfieldColor(color);   
+                    rend.material.SetColor("_InputColor", tempCol);
                 }
             }
         }

@@ -49,6 +49,7 @@ MonoBehaviour:
     onlyOneChildSplit: 0
     branches: []
   growingPlantPrefab: {fileID: 3441616254432501634, guid: 8097c88abffc9ca439004cee055a1072, type: 3}
+  plantOffset: {x: 0, y: 3, z: 0}
   references:
     version: 2
     RefIds: []
