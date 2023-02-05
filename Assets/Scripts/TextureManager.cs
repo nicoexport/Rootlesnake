@@ -146,9 +146,9 @@ namespace Rootlesnake {
             }
         }
 
-        public bool TryToHitSomething(in Vector3 worldStartPosition, in Vector3 worldMotion, out Color hitColor) {
+        public bool TryToHitSomething(in Vector3 worldStartPosition, in Vector3 worldMotion, out bool isNutrient) {
             //get all Pixels inbetween the currentPosition and the position after movin
-            hitColor = Color.black;
+            isNutrient = false;
 
             var worldTargetPosition = worldStartPosition + worldMotion;
 
@@ -176,7 +176,7 @@ namespace Rootlesnake {
             for (int i = 0; i <= steps; i++) {
                 var testPosition = new Vector2Int((int)x, (int)y);
                 if (testPosition != startPosition) {
-                    if (TryToHitSomething(testPosition, out hitColor)) {
+                    if (TryToHitSomething(testPosition, out isNutrient)) {
                         return true;
                     }
                 }
@@ -187,9 +187,10 @@ namespace Rootlesnake {
             return false;
         }
 
-        public bool TryToHitSomething(in Vector2Int pixelPosition, out Color hitColor) {
-            hitColor = m_collisionTexture.GetPixel(pixelPosition.x, pixelPosition.y);
-            return hitColor.a > 0.5f;
+        public bool TryToHitSomething(in Vector2Int pixelPosition, out bool isNutrient) {
+            var hitColor = m_collisionTexture.GetPixel(pixelPosition.x, pixelPosition.y);
+            isNutrient = GameManager.instance.IsNutrient(hitColor);
+            return isNutrient || hitColor.a > 0.5f;
         }
 
         public bool IsOutOfBounds(Vector2Int position) {
