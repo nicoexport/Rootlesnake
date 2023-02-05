@@ -10,5 +10,8 @@ namespace Rootlesnake.Effects {
             Application.Quit();
 #endif
         }
+        public void StartRound() {
+            Debug.Log("Round Started");
+        }
     }
 }

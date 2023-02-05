@@ -46,6 +46,15 @@ namespace Rootlesnake.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Start"",
+                    ""type"": ""Button"",
+                    ""id"": ""e7346dcb-276f-4297-b9b6-d47bd9f75c78"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -134,6 +143,17 @@ namespace Rootlesnake.Input
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6fdb8f2d-5a00-427f-bd8a-170833c2cd7d"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Start"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -406,6 +426,7 @@ namespace Rootlesnake.Input
             m_Root = asset.FindActionMap("Root", throwIfNotFound: true);
             m_Root_Move = m_Root.FindAction("Move", throwIfNotFound: true);
             m_Root_Interact = m_Root.FindAction("Interact", throwIfNotFound: true);
+            m_Root_Start = m_Root.FindAction("Start", throwIfNotFound: true);
             // Debug
             m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
             m_Debug_F1 = m_Debug.FindAction("F1", throwIfNotFound: true);
@@ -481,12 +502,14 @@ namespace Rootlesnake.Input
         private IRootActions m_RootActionsCallbackInterface;
         private readonly InputAction m_Root_Move;
         private readonly InputAction m_Root_Interact;
+        private readonly InputAction m_Root_Start;
         public struct RootActions
         {
             private @Controls m_Wrapper;
             public RootActions(@Controls wrapper) { m_Wrapper = wrapper; }
             public InputAction @Move => m_Wrapper.m_Root_Move;
             public InputAction @Interact => m_Wrapper.m_Root_Interact;
+            public InputAction @Start => m_Wrapper.m_Root_Start;
             public InputActionMap Get() { return m_Wrapper.m_Root; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -502,6 +525,9 @@ namespace Rootlesnake.Input
                     @Interact.started -= m_Wrapper.m_RootActionsCallbackInterface.OnInteract;
                     @Interact.performed -= m_Wrapper.m_RootActionsCallbackInterface.OnInteract;
                     @Interact.canceled -= m_Wrapper.m_RootActionsCallbackInterface.OnInteract;
+                    @Start.started -= m_Wrapper.m_RootActionsCallbackInterface.OnStart;
+                    @Start.performed -= m_Wrapper.m_RootActionsCallbackInterface.OnStart;
+                    @Start.canceled -= m_Wrapper.m_RootActionsCallbackInterface.OnStart;
                 }
                 m_Wrapper.m_RootActionsCallbackInterface = instance;
                 if (instance != null)
@@ -512,6 +538,9 @@ namespace Rootlesnake.Input
                     @Interact.started += instance.OnInteract;
                     @Interact.performed += instance.OnInteract;
                     @Interact.canceled += instance.OnInteract;
+                    @Start.started += instance.OnStart;
+                    @Start.performed += instance.OnStart;
+                    @Start.canceled += instance.OnStart;
                 }
             }
         }
@@ -650,6 +679,7 @@ namespace Rootlesnake.Input
         {
             void OnMove(InputAction.CallbackContext context);
             void OnInteract(InputAction.CallbackContext context);
+            void OnStart(InputAction.CallbackContext context);
         }
         public interface IDebugActions
         {
