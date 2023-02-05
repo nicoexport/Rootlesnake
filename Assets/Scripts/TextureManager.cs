@@ -1,5 +1,4 @@
 using System.Linq;
-using MyBox;
 using Slothsoft.UnityExtensions;
 using UnityEngine;
 
@@ -8,24 +7,13 @@ namespace Rootlesnake {
         public static TextureManager instance { get; private set; }
 
         [SerializeField]
-        Vector2Int m_playSpaceSize = new(192, 81);
-        public Vector2Int playSpaceSize => m_playSpaceSize;
+        Vector2Int m_playfieldSize = new(192, 81);
+        public Vector2Int playfieldSize => m_playfieldSize;
         [SerializeField]
-        Vector2Int m_collisionSize = new(960, 405);
-        public Vector2Int collisionSize => m_collisionSize;
-
-        [SerializeField, ReadOnly]
-        RenderTexture targetTexture;
-        [SerializeField, ReadOnly]
-        RenderTexture previousTexture;
+        Vector2Int m_renderSize = new(960, 405);
+        public Vector2Int renderSize => m_renderSize;
         [SerializeField]
         TextureFormat renderFormat = TextureFormat.RGBA32;
-        [SerializeField, Expandable]
-        Material renderMaterial = default;
-        [SerializeField, ReadOnly]
-        Rect renderRect = new();
-        [SerializeField, ReadOnly]
-        Vector3 renderTexturePixelSize = new();
 
         [SerializeField, Expandable]
         Texture2D m_collisionTexture;
@@ -34,16 +22,14 @@ namespace Rootlesnake {
         void Awake() {
             instance = this;
 
-            m_collisionTexture = new Texture2D(m_collisionSize.x, m_collisionSize.y, renderFormat, false) {
+            m_collisionTexture = new Texture2D(m_renderSize.x, m_renderSize.y, renderFormat, false) {
                 name = "Playfield",
                 filterMode = FilterMode.Point,
                 wrapMode = TextureWrapMode.Clamp,
                 anisoLevel = 0,
             };
-            m_collisionTexture.SetPixels(Enumerable.Repeat(new Color(0, 0, 0, 0), collisionSize.x * collisionSize.y).ToArray());
+            m_collisionTexture.SetPixels(Enumerable.Repeat(new Color(0, 0, 0, 0), renderSize.x * renderSize.y).ToArray());
             m_collisionTexture.Apply();
-            renderRect = new Rect(0, 0, collisionSize.y, collisionSize.y);
-            renderTexturePixelSize = new(1f / renderRect.width, 1f / renderRect.height, 0);
         }
 
         void OnEnable() {
@@ -80,24 +66,25 @@ namespace Rootlesnake {
         Vector3 WorldSpaceToRenderTextureSpace(in Vector3 position) {
             var normalizedPosition = position.SwizzleXY();
 
-            normalizedPosition.x += playSpaceSize.x * 0.5f;
-            normalizedPosition.y += playSpaceSize.y * 0.5f;
-            normalizedPosition /= playSpaceSize;
+            normalizedPosition.x += playfieldSize.x * 0.5f;
+            normalizedPosition.y += playfieldSize.y * 0.5f;
+            normalizedPosition /= playfieldSize;
 
             return normalizedPosition;
         }
-        Vector2Int WorldSpaceToTexture2DSpace(in Vector3 position) {
+        Vector2Int WorldSpaceToPixelSpace(in Vector3 position) {
             var normalizedPosition = WorldSpaceToRenderTextureSpace(position);
 
-            normalizedPosition.x *= collisionSize.x;
-            normalizedPosition.y *= collisionSize.y;
+            normalizedPosition.x *= renderSize.x;
+            normalizedPosition.y *= renderSize.y;
 
             return Vector2Int.RoundToInt(normalizedPosition);
         }
 
         public void DrawPixelWorldSpace(in Color color, in Vector3 worldPosition) {
-            var position = WorldSpaceToTexture2DSpace(worldPosition);
+            var position = WorldSpaceToPixelSpace(worldPosition);
             collisionTexture.SetPixel(position.x, position.y, color);
+
             /*
             var previousTexture = RenderTexture.active;
             RenderTexture.active = targetTexture;
@@ -122,8 +109,8 @@ namespace Rootlesnake {
         }
 
         public void DrawLineWorldSpace(in Color color, in Vector3 worldStartPosition, in Vector3 worldTargetPosition) {
-            var startPosition = WorldSpaceToTexture2DSpace(worldStartPosition);
-            var targetPosition = WorldSpaceToTexture2DSpace(worldTargetPosition);
+            var startPosition = WorldSpaceToPixelSpace(worldStartPosition);
+            var targetPosition = WorldSpaceToPixelSpace(worldTargetPosition);
             collisionTexture.SetPixel(startPosition.x, startPosition.y, color);
             if (startPosition != targetPosition) {
                 collisionTexture.SetPixel(targetPosition.x, targetPosition.y, color);
@@ -140,6 +127,7 @@ namespace Rootlesnake {
 
         void PostMoveRoots() {
             m_collisionTexture.Apply();
+
             /*
             GL.End();
 
@@ -155,8 +143,8 @@ namespace Rootlesnake {
 
             var worldTargetPosition = worldStartPosition + worldMotion;
 
-            var startPosition = WorldSpaceToTexture2DSpace(worldStartPosition);
-            var targetPosition = WorldSpaceToTexture2DSpace(worldTargetPosition);
+            var startPosition = WorldSpaceToPixelSpace(worldStartPosition);
+            var targetPosition = WorldSpaceToPixelSpace(worldTargetPosition);
 
             if (IsOutOfBounds(targetPosition)) {
                 return true;
@@ -189,6 +177,7 @@ namespace Rootlesnake {
             }
             return false;
         }
+
         bool TryToHitSomething(in Vector2Int texturePosition, out Color hitColor) {
             hitColor = m_collisionTexture.GetPixel(texturePosition.x, texturePosition.y);
             return hitColor.a > 0.5f;
