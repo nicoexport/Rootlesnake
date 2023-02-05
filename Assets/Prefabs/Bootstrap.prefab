@@ -63,7 +63,7 @@ MonoBehaviour:
   m_playfieldSize: {x: 192, y: 81}
   m_renderSize: {x: 960, y: 405}
   renderFormat: 13
-  m_collisionTexture: {fileID: 0}
+  m_collisionTexture: {fileID: 2800000, guid: b028a23f809e4704b9dd6eec8ce57537, type: 3}
 --- !u!114 &2090396967645898643
 MonoBehaviour:
   m_ObjectHideFlags: 0

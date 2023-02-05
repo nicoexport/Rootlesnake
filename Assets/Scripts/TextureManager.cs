@@ -9,19 +9,16 @@ namespace Rootlesnake {
         [SerializeField]
         Vector2Int m_playfieldSize = new(192, 81);
         public Vector2Int playfieldSize => m_playfieldSize;
-        [SerializeField]
-        Vector2Int m_renderSize = new(960, 405);
-        public Vector2Int renderSize => m_renderSize;
-        [SerializeField]
-        TextureFormat renderFormat = TextureFormat.RGBA32;
 
         [SerializeField, Expandable]
         Texture2D m_collisionTexture;
         public Texture2D collisionTexture => m_collisionTexture;
+        public Vector2Int collisionSize => new(m_collisionTexture.width, m_collisionTexture.height);
 
         void Awake() {
             instance = this;
 
+            /*
             m_collisionTexture = new Texture2D(m_renderSize.x, m_renderSize.y, renderFormat, false) {
                 name = "Playfield",
                 filterMode = FilterMode.Point,
@@ -30,6 +27,7 @@ namespace Rootlesnake {
             };
             m_collisionTexture.SetPixels(Enumerable.Repeat(new Color(0, 0, 0, 0), renderSize.x * renderSize.y).ToArray());
             m_collisionTexture.Apply();
+            //*/
         }
 
         void OnEnable() {
@@ -40,12 +38,6 @@ namespace Rootlesnake {
         void OnDisable() {
             GameManager.onPreMoveRoots -= PreMoveRoots;
             GameManager.onPostMoveRoots -= PostMoveRoots;
-        }
-
-        void OnDestroy() {
-            if (m_collisionTexture) {
-                Destroy(m_collisionTexture);
-            }
         }
 
         void PreMoveRoots() {
@@ -75,8 +67,8 @@ namespace Rootlesnake {
         public Vector2Int WorldSpaceToPixelSpace(in Vector3 position) {
             var normalizedPosition = WorldSpaceToRenderTextureSpace(position);
 
-            normalizedPosition.x *= renderSize.x;
-            normalizedPosition.y *= renderSize.y;
+            normalizedPosition.x *= collisionSize.x;
+            normalizedPosition.y *= collisionSize.y;
 
             return Vector2Int.RoundToInt(normalizedPosition);
         }
