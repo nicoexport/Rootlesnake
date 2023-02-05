@@ -12,7 +12,7 @@ namespace Rootlesnake.Effects {
 #endif
         }
         public void StartRound() {
-            Debug.Log("Round Started");
+            GameManager.instance.StartRound();
         }
         protected override void InvokeNow(GameObject context) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);

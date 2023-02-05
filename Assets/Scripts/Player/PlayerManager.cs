@@ -18,7 +18,7 @@ namespace Rootlesnake.Player {
         [SerializeField]
         Transform[] playerAnchors = Array.Empty<Transform>();
 
-        public HashSet<PlayerInput> players = new();
+        readonly HashSet<HumanIntentions> players = new();
 
         void OnValidate() {
             if (!manager) {
@@ -33,25 +33,35 @@ namespace Rootlesnake.Player {
         void OnEnable() {
             manager.onPlayerJoined += OnPlayerJoined;
             manager.onPlayerLeft += OnPlayerLeft;
+
+            GameManager.onStartRound += HandleStartRound;
         }
 
         void OnDisable() {
             manager.onPlayerJoined -= OnPlayerJoined;
+
+            GameManager.onStartRound -= HandleStartRound;
         }
 
         void OnPlayerJoined(PlayerInput input) {
-            players.Add(input);
 
             input.transform.SetParent(playerAnchors[input.playerIndex], false);
 
             var human = input.GetComponent<HumanIntentions>();
             human.config = GameManager.instance.plants[input.playerIndex];
 
+            players.Add(human);
             onPlayerJoined?.Invoke(human);
         }
 
         void OnPlayerLeft(PlayerInput input) {
-            players.Remove(input);
+            players.Remove(input.GetComponent<HumanIntentions>());
+        }
+
+        void HandleStartRound() {
+            foreach (var player in players) {
+                player.SpawnRoot();
+            }
         }
     }
 }

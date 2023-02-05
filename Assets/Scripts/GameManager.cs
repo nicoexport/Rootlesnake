@@ -5,16 +5,19 @@ using UnityEngine;
 
 namespace Rootlesnake {
     sealed class GameManager : MonoBehaviour {
+        public static GameManager instance { get; private set; }
+
+        public static event Action onStartRound;
+
         [SerializeField, Expandable]
         ColorSettings m_playfieldColors;
         public ColorSettings playfieldColors => m_playfieldColors;
         [SerializeField, Expandable]
         ColorSettings m_collisionColors;
         public ColorSettings collisionColors => m_collisionColors;
+
         [SerializeField]
         public PlantConfig[] plants = Array.Empty<PlantConfig>();
-
-        public static GameManager instance { get; private set; }
 
         public static event Action onPreMoveRoots;
         public static event Action<float> onMoveRoots;
@@ -51,6 +54,10 @@ namespace Rootlesnake {
                 && Math.Abs(a.g - b.g) < delta
                 && Math.Abs(a.b - b.b) < delta
                 && Math.Abs(a.a - b.a) < delta;
+        }
+
+        public void StartRound() {
+            onStartRound?.Invoke();
         }
     }
 }

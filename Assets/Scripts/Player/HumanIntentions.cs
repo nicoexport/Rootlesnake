@@ -34,12 +34,14 @@ namespace Rootlesnake.Player {
             input.actions["Interact"].performed += PerformInteraction;
         }
         void OnDisable() {
-            Destroy(controllerInstance);
+            if (controllerInstance) {
+                Destroy(controllerInstance);
+            }
             input.actions["Move"].performed -= PerformMove;
             input.actions["Interact"].performed -= PerformInteraction;
         }
 
-        void SpawnRoot() {
+        public void SpawnRoot() {
             controllerInstance = Instantiate(controllerPrefab, transform);
             controllerInstance.SetPlayerIndex(input.playerIndex);
         }
