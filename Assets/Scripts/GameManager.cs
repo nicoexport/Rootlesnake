@@ -27,6 +27,9 @@ namespace Rootlesnake {
             onPostMoveRoots?.Invoke();
         }
 
+        public bool IsBackground(in Color color) {
+            return IsApproximately(m_collisionColors.background, color);
+        }
         public bool IsNutrient(in Color color) {
             return IsApproximately(m_collisionColors.nutrient, color);
         }

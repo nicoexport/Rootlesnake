@@ -190,7 +190,7 @@ namespace Rootlesnake {
         public bool TryToHitSomething(in Vector2Int pixelPosition, out bool isNutrient) {
             var hitColor = m_collisionTexture.GetPixel(pixelPosition.x, pixelPosition.y);
             isNutrient = GameManager.instance.IsNutrient(hitColor);
-            return isNutrient || hitColor.a > 0.5f;
+            return !GameManager.instance.IsBackground(hitColor);
         }
 
         public bool IsOutOfBounds(Vector2Int position) {
