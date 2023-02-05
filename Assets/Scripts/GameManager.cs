@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Slothsoft.UnityExtensions;
 using UnityEngine;
 
@@ -27,6 +28,16 @@ namespace Rootlesnake {
             onPostMoveRoots?.Invoke();
         }
 
+        public Color CollisionColorToPlayfieldColor(in Color color) {
+            int i = 0;
+            foreach (var testColor in collisionColors.colors) {
+                if (IsApproximately(testColor, color)) {
+                    break;
+                }
+                i++;
+            }
+            return playfieldColors.colors.ElementAt(i);
+        }
         public bool IsBackground(in Color color) {
             return IsApproximately(m_collisionColors.background, color);
         }
