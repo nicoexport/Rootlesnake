@@ -879,6 +879,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2063197455939815404, guid: 700a9fc4659250442991b7537e129013, type: 3}
+      propertyPath: TriggerOnce
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8742659850671164513, guid: 700a9fc4659250442991b7537e129013, type: 3}
       propertyPath: m_Name
       value: Bootstrap

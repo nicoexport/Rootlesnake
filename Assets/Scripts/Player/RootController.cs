@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using Rootlesnake.Plants;
 using UnityEngine;
 using UnityEngine.Events;
@@ -21,9 +22,7 @@ namespace Rootlesnake.Player {
             m_root.myGrowingPlant = Instantiate(growingPlantPrefab, transform.position + plantOffset, Quaternion.identity);
             growingPlant = m_root.myGrowingPlant;
             growingPlant.SetColor(m_root.aliveColor);
-            Debug.Log("myGrowingPlant");
-            Debug.Log(growingPlant);
-            Debug.Log(m_root.aliveColor);
+            AudioManager.instance.PlayAudio(Audio.RootGrow);
         }
 
         void OnEnable() {

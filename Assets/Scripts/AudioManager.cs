@@ -1,61 +1,49 @@
 using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace DefaultNamespace {
     public class AudioManager : MonoBehaviour {
-        [SerializeField] private UnityEvent onRootCollide;
-        [SerializeField] private UnityEvent onRootGrow;
-        [SerializeField] private UnityEvent onRootSplit;
-        [SerializeField] private UnityEvent onNutrientCollect;
-        [SerializeField] private UnityEvent onMenuSelect;
-        [SerializeField] private UnityEvent onMenuPressUp;
-        [SerializeField] private UnityEvent onMenuPressDown;
-        [SerializeField] private UnityEvent onMenuConfirm;
-        [SerializeField] private UnityEvent onMenuCancel;
-        [SerializeField] private UnityEvent onMenuBGM;
-        [SerializeField] private UnityEvent onBGM;
-        
+
         public static AudioManager instance { get; private set; }
         
         void Awake() {
             instance = this;
         }
-        
+
         public void PlayAudio(Audio audio) {
             switch (audio) {
                 case Audio.RootCollide:
-                    onRootCollide.Invoke();
+                   // FMODUnity.RuntimeManager.PlayOneShot("event:/Root_Colide");
                     break;
                 case Audio.RootGrow:
-                    onRootGrow.Invoke();
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Root_Grow");
                     break;
                 case Audio.RootSplit:
-                    onRootSplit.Invoke();
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Root_Split");
                     break;
                 case Audio.NutrientCollect:
-                    onNutrientCollect.Invoke();
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Nutrient_Collect");
                     break;
                 case Audio.MenuSelect:
-                    onMenuSelect.Invoke();
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Menu_Select");
                     break;
                 case Audio.MenuPressUp:
-                    onMenuPressUp.Invoke();
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Menu_PressUp");
                     break;
                 case Audio.MenuPressDown:
-                    onMenuPressDown.Invoke();
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Menu_PressDown");
                     break;
                 case Audio.MenuConfirm:
-                    onMenuConfirm.Invoke();
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Menu_Confirm");
                     break;
                 case Audio.MenuCancel:
-                    onMenuCancel.Invoke();
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Menu_Cancel");;
                     break;
                 case Audio.MenuBGM:
-                    onMenuBGM.Invoke();
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Menu_BGM");
                     break;
                 case Audio.BGM:
-                    onBGM.Invoke();
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/BGM");
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(audio), audio, null);

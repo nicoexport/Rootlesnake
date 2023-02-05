@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8742659850671164514}
   - component: {fileID: 8742659850671164516}
   - component: {fileID: 2090396967645898643}
+  - component: {fileID: 3354274669975863937}
   m_Layer: 0
   m_Name: Bootstrap
   m_TagString: Untagged
@@ -82,3 +83,15 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 562d526e835019942904b7d76dadd3dd, type: 2}
   inputString: _Input_
   outputString: _Output_
+--- !u!114 &3354274669975863937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8742659850671164513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a95eea1db99d45d29c39fa507415bd54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
