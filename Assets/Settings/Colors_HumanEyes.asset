@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Colors_HumanEyes
   m_EditorClassIdentifier: 
   playerOne: {r: 0.007843138, g: 2, b: 0.4712042, a: 1}
-  playerTwo: {r: 20.547161, g: 0.67990416, b: 30.884558, a: 1}
+  playerTwo: {r: 1.9576107, g: 0, b: 2.96029, a: 1}
   playerThree: {r: 2, g: 0.9109167, b: 0.627451, a: 1}
   playerFour: {r: 0, g: 3.160574, b: 24.604584, a: 1}
   deadPlayer: {r: 0.41509432, g: 0.15076537, b: 0.15829802, a: 1}

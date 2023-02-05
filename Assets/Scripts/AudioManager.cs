@@ -1,4 +1,5 @@
 using System;
+using FMOD.Studio;
 using UnityEngine;
 
 namespace Rootlesnake {
@@ -9,6 +10,8 @@ namespace Rootlesnake {
         void Awake() {
             instance = this;
         }
+
+        private EventInstance music;
 
         public void PlayAudio(Audio audio) {
             switch (audio) {
@@ -40,10 +43,14 @@ namespace Rootlesnake {
                     FMODUnity.RuntimeManager.PlayOneShot("event:/Menu_Cancel");
                     break;
                 case Audio.MenuBGM:
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Menu_BGM");
+                    music.stop(STOP_MODE.ALLOWFADEOUT);
+                    music =  FMODUnity.RuntimeManager.CreateInstance("event:/Menu_BGM");
+                    music.start();
                     break;
                 case Audio.BGM:
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/BGM");
+                    music.stop(STOP_MODE.ALLOWFADEOUT);
+                    music = FMODUnity.RuntimeManager.CreateInstance("event:/BGM");
+                    music.start();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(audio), audio, null);
