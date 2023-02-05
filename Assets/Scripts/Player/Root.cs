@@ -40,12 +40,9 @@ namespace Rootlesnake.Player {
 
         readonly List<RootBranch> tmpBranches = new();
 
-
         public void Reset(Vector3 position) {
             branches.Clear();
             CreateBranch(position);
-
-
         }
 
         RootBranch CreateBranch(Vector3 position) {

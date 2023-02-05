@@ -8,21 +8,11 @@ namespace Rootlesnake.Player {
         Root m_root = new();
 
         [SerializeField]
-        GrowingPlant growingPlantPrefab;
-
-        [SerializeField] Vector3 plantOffset = new Vector3(0f, 1f, 0f);
+        Vector3 plantOffset = new Vector3(0f, 1f, 0f);
 
         GrowingPlant growingPlant;
 
         public IPlant root => m_root;
-
-        void Start() {
-            m_root.Reset(transform.position);
-            m_root.myGrowingPlant = Instantiate(growingPlantPrefab, transform.position + plantOffset, Quaternion.identity);
-            growingPlant = m_root.myGrowingPlant;
-            growingPlant.SetColor(m_root.aliveColor);
-            AudioManager.instance.PlayAudio(Audio.RootGrow);
-        }
 
         void OnEnable() {
             GameManager.onMoveRoots += m_root.Update;
@@ -31,8 +21,17 @@ namespace Rootlesnake.Player {
             GameManager.onMoveRoots -= m_root.Update;
         }
 
-        public void SetPlayerIndex(int playerIndex) {
+        public void SpawnPlant(int playerIndex, GameObject prefab) {
             m_root.playerIndex = playerIndex;
+            m_root.Reset(transform.position);
+            var instance = Instantiate(
+                prefab,
+                transform.position + plantOffset, Quaternion.identity
+            );
+            m_root.myGrowingPlant = instance.GetComponent<GrowingPlant>();
+            m_root.myGrowingPlant.SetColor(m_root.aliveColor);
+
+            AudioManager.instance.PlayAudio(Audio.RootGrow);
         }
     }
 }

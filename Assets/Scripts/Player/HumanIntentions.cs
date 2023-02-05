@@ -43,7 +43,7 @@ namespace Rootlesnake.Player {
 
         public void SpawnRoot() {
             controllerInstance = Instantiate(controllerPrefab, transform);
-            controllerInstance.SetPlayerIndex(input.playerIndex);
+            controllerInstance.SpawnPlant(input.playerIndex, config.prefab);
         }
 
         void PerformMove(InputAction.CallbackContext context) {

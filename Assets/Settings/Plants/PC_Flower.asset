@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32a684700b1bd5b4690a518ffedc1251, type: 3}
   m_Name: PC_Flower
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1132479996746788314, guid: b4884fdf13d3d1a4bbf3ac0dac1c50a5, type: 3}
+  effect: {fileID: 11400000}
+  prefab: {fileID: 3441616254432501635, guid: 8097c88abffc9ca439004cee055a1072, type: 3}
   sprite: {fileID: 2363127522629950914, guid: 63681b6434bd38c44987a54ef8c09f40, type: 3}
