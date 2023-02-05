@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{bc30a2c8-c71f-42d1-8ddd-78b975cfe1cd}">
+	<object class="AudioFile" id="{a87cc70e-ace0-4ea0-ab83-0bd79b9949e9}">
 		<property name="assetPath">
-			<value>CollectSFX.wav</value>
+			<value>CancelSFX.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

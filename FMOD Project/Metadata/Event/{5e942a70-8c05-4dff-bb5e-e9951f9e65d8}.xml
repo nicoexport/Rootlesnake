@@ -93,7 +93,7 @@
 			<value>0.5</value>
 		</property>
 		<property name="timelockedOffset">
-			<value>0.10000000000000001</value>
+			<value>0.13125000000000001</value>
 		</property>
 		<property name="volume">
 			<value>-5.5</value>
@@ -132,7 +132,7 @@
 			<value>pitch</value>
 		</property>
 		<property name="amount">
-			<value>14</value>
+			<value>20.5</value>
 		</property>
 	</object>
 	<object class="MixerBusEffectChain" id="{57da3f26-674f-47de-afc9-113afac31e88}">
