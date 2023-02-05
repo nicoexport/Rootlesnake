@@ -59,7 +59,7 @@ namespace Rootlesnake {
 
         public void StartRound() {
             onStartRound?.Invoke();
-            AudioManager.instance.PlayAudio(Audio.BGM);
+            AudioManager.instance.PlayAudio(EffectCue.BGM);
         }
 
         public void StopRound() {

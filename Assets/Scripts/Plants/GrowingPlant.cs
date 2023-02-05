@@ -23,7 +23,8 @@ namespace Rootlesnake.Plants {
                     plantStages[i].SetActive(false);
                 }
             }
-            AudioManager.instance.PlayAudio(Audio.NutrientCollect);
+            AudioManager.instance.PlayAudio(EffectCue.NutrientCollect);
+            ParticleManager.instance.PlayAudio(EffectCue.PlantGrow, transform);
         }
 
         public void SetColor(Color color) {

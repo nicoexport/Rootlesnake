@@ -11,43 +11,43 @@ namespace Rootlesnake {
             instance = this;
         }
 
-        private EventInstance music;
+        EventInstance music;
 
-        public void PlayAudio(Audio audio) {
+        public void PlayAudio(EffectCue audio) {
             switch (audio) {
-                case Audio.RootCollide:
+                case EffectCue.RootCollide:
                     // FMODUnity.RuntimeManager.PlayOneShot("event:/Root_Colide");
                     break;
-                case Audio.RootGrow:
+                case EffectCue.RootGrow:
                     FMODUnity.RuntimeManager.PlayOneShot("event:/Root_Grow");
                     break;
-                case Audio.RootSplit:
+                case EffectCue.RootSplit:
                     FMODUnity.RuntimeManager.PlayOneShot("event:/Root_Split");
                     break;
-                case Audio.NutrientCollect:
+                case EffectCue.NutrientCollect:
                     FMODUnity.RuntimeManager.PlayOneShot("event:/Nutrient_Collect");
                     break;
-                case Audio.MenuSelect:
+                case EffectCue.MenuSelect:
                     FMODUnity.RuntimeManager.PlayOneShot("event:/Menu_Select");
                     break;
-                case Audio.MenuPressUp:
+                case EffectCue.MenuPressUp:
                     FMODUnity.RuntimeManager.PlayOneShot("event:/Menu_PressUp");
                     break;
-                case Audio.MenuPressDown:
+                case EffectCue.MenuPressDown:
                     FMODUnity.RuntimeManager.PlayOneShot("event:/Menu_PressDown");
                     break;
-                case Audio.MenuConfirm:
+                case EffectCue.MenuConfirm:
                     FMODUnity.RuntimeManager.PlayOneShot("event:/Menu_Confirm");
                     break;
-                case Audio.MenuCancel:
+                case EffectCue.MenuCancel:
                     FMODUnity.RuntimeManager.PlayOneShot("event:/Menu_Cancel");
                     break;
-                case Audio.MenuBGM:
+                case EffectCue.MenuBGM:
                     music.stop(STOP_MODE.ALLOWFADEOUT);
-                    music =  FMODUnity.RuntimeManager.CreateInstance("event:/Menu_BGM");
+                    music = FMODUnity.RuntimeManager.CreateInstance("event:/Menu_BGM");
                     music.start();
                     break;
-                case Audio.BGM:
+                case EffectCue.BGM:
                     music.stop(STOP_MODE.ALLOWFADEOUT);
                     music = FMODUnity.RuntimeManager.CreateInstance("event:/BGM");
                     music.start();
@@ -58,7 +58,7 @@ namespace Rootlesnake {
         }
     }
 
-    public enum Audio {
+    public enum EffectCue {
         RootCollide,
         RootGrow,
         RootSplit,
@@ -69,6 +69,7 @@ namespace Rootlesnake {
         MenuConfirm,
         MenuCancel,
         MenuBGM,
-        BGM
+        BGM,
+        PlantGrow,
     }
 }

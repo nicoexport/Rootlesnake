@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8742659850671164516}
   - component: {fileID: 2090396967645898643}
   - component: {fileID: 3354274669975863937}
+  - component: {fileID: 6462599237612764316}
   m_Layer: 0
   m_Name: Bootstrap
   m_TagString: Untagged
@@ -95,3 +96,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a95eea1db99d45d29c39fa507415bd54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6462599237612764316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8742659850671164513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd1d8b75c16bf614ea3ed0363ea2276a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantGrowPrefab: {fileID: 7386706196257274975, guid: 5bc8cd4ef6a9bd54bb18e6fec58be69b, type: 3}
+  rootSplitPrefab: {fileID: 0}
+  nutrientCollectPrefab: {fileID: 2006811456646358702, guid: 021b5b60a2683e540820b98628757b4b, type: 3}

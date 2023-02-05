@@ -30,7 +30,7 @@ namespace Rootlesnake.Player {
             m_root.myGrowingPlant = instance.GetComponent<GrowingPlant>();
             m_root.myGrowingPlant.SetColor(m_root.aliveColor);
 
-            AudioManager.instance.PlayAudio(Audio.RootGrow);
+            AudioManager.instance.PlayAudio(EffectCue.RootGrow);
         }
     }
 }

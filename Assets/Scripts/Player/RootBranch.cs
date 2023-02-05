@@ -111,7 +111,7 @@ namespace Rootlesnake.Player {
                     root.Feed();
                 } else {
                     isAlive = false;
-                    AudioManager.instance.PlayAudio(Audio.RootCollide);
+                    AudioManager.instance.PlayAudio(EffectCue.RootCollide);
                     TextureManager.instance.DrawDotPixelSpace(color, newPosition2D);
                     return;
                 }
@@ -134,7 +134,8 @@ namespace Rootlesnake.Player {
             angle = intendedAngle = leftAngle;
             previousAngle = integerAngle - 1;
 
-            AudioManager.instance.PlayAudio(Audio.RootSplit);
+            AudioManager.instance.PlayAudio(EffectCue.RootSplit);
+            ParticleManager.instance.PlayAudio(EffectCue.RootSplit, m_head.position3D);
             return new(this, rightAngle);
         }
     }
