@@ -25,7 +25,7 @@ unityPipeline {
     STEAM_CREDENTIALS = ''
     
     // configuration for deploying to itch
-    ITCH_ID = 'nico-export/rootlesnake'
+    ITCH_ID = 'nico-export/root-rush'
 	ITCH_CREDENTIALS = 'nico-itch.io'
 }
 
