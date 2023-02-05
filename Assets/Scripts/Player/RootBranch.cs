@@ -106,8 +106,8 @@ namespace Rootlesnake.Player {
 
 
 
-            if (TextureManager.instance.TryToHitSomething(newPosition2D, out var hitColor)) {
-                if (GameManager.instance.IsNutrient(hitColor)) {
+            if (TextureManager.instance.TryToHitSomething(newPosition2D, out bool isNutrient)) {
+                if (isNutrient) {
                     Debug.Log("Yummy!");
                 } else {
                     isAlive = false;
