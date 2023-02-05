@@ -123,7 +123,7 @@ namespace Rootlesnake {
             RenderTexture.active = previousTexture;
         }
 
-        public bool TryToHitSomething(in Vector3 worldStartPosition, in Vector3 worldMotion, in Color ownColor, out Color hitColor) {
+        public bool TryToHitSomething(in Vector3 worldStartPosition, in Vector3 worldMotion, out Color hitColor) {
             //get all Pixels inbetween the currentPosition and the position after movin
             hitColor = Color.black;
 
@@ -140,19 +140,22 @@ namespace Rootlesnake {
                 return false;
             }
 
-            var delta = startPosition - targetPosition;
+            var delta = worldTargetPosition - worldStartPosition;
 
-            int steps = Mathf.Abs(Mathf.Abs(delta.x) > Mathf.Abs(delta.y) ? delta.x : delta.y);
+            int steps = Mathf.CeilToInt(Mathf.Abs(Mathf.Abs(delta.x) > Mathf.Abs(delta.y) ? delta.x : delta.y));
 
-            float xIncrement = delta.x / (float)steps;
-            float yIncrement = delta.y / (float)steps;
+            float xIncrement = delta.x / steps;
+            float yIncrement = delta.y / steps;
 
             float x = startPosition.x;
             float y = startPosition.y;
 
             for (int i = 0; i <= steps; i++) {
-                if (TryToHitSomething(new((int)x, (int)y), ownColor, out hitColor)) {
-                    return true;
+                var testPosition = new Vector2Int((int)x, (int)y);
+                if (testPosition != startPosition) {
+                    if (TryToHitSomething(testPosition, out hitColor)) {
+                        return true;
+                    }
                 }
 
                 x += xIncrement;
@@ -160,11 +163,8 @@ namespace Rootlesnake {
             }
             return false;
         }
-        public bool TryToHitSomething(in Vector2Int texture2DPosition, in Color ownColor, out Color hitColor) {
-            hitColor = m_collisionTexture.GetPixel(texture2DPosition.x, texture2DPosition.y);
-            if (hitColor == ownColor) {
-                return false;
-            }
+        bool TryToHitSomething(in Vector2Int texturePosition, out Color hitColor) {
+            hitColor = m_collisionTexture.GetPixel(texturePosition.x, texturePosition.y);
             return hitColor.a > 0.5f;
         }
 
