@@ -19,8 +19,9 @@ namespace Rootlesnake {
 
         void Awake() {
             instance = this;
-
-            m_collisionTexture.SetPixels(Enumerable.Repeat(new Color(0, 0, 0, 0), collisionSize.x * collisionSize.y).ToArray());
+        }
+        void Start() {
+            m_collisionTexture.SetPixels(Enumerable.Repeat(GameManager.instance.collisionColors.background, collisionSize.x * collisionSize.y).ToArray());
             m_collisionTexture.Apply();
 
             /*

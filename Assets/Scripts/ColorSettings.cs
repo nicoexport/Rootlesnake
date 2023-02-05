@@ -34,7 +34,10 @@ namespace Rootlesnake {
         [Space]
         [SerializeField]
         [ColorUsage(true, true)]
-        public Color nutrient = new(0.5f, 0.5f, 0.5f, 1);
+        public Color nutrient = new(1, 1, 1, 0);
+        [SerializeField]
+        [ColorUsage(true, true)]
+        public Color background = new(0, 0, 0, 0);
 
         public IEnumerable<Color> colors {
             get {
@@ -47,6 +50,7 @@ namespace Rootlesnake {
                 yield return deadPlayerThree;
                 yield return deadPlayerFour;
                 yield return nutrient;
+                yield return background;
             }
         }
     }
