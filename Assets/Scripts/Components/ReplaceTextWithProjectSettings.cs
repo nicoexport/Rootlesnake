@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 
 namespace Rootlesnake.Components {
@@ -16,9 +15,9 @@ namespace Rootlesnake.Components {
 
         IEnumerable<(string, string)> replacements {
             get {
-                yield return (nameof(PlayerSettings.companyName), PlayerSettings.companyName);
-                yield return (nameof(PlayerSettings.bundleVersion), PlayerSettings.bundleVersion);
-                yield return (nameof(PlayerSettings.productName), PlayerSettings.productName);
+                yield return (nameof(Application.companyName), Application.companyName);
+                yield return (nameof(Application.version), Application.version);
+                yield return (nameof(Application.productName), Application.productName);
             }
         }
 
