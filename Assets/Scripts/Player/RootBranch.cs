@@ -39,9 +39,9 @@ namespace Rootlesnake.Player {
         [SerializeField]
         float maxRotationSpeed = 100;
         [SerializeField]
-        float splitAngleMin = 15;
+        float splitAngleMin = 30;
         [SerializeField]
-        float splitAngleMax = 45;
+        float splitAngleMax = 60;
         float splitAngle => UnityRandom.Range(splitAngleMin, splitAngleMax);
 
         int integerAngle => Mathf.RoundToInt(angle);
@@ -112,8 +112,6 @@ namespace Rootlesnake.Player {
                 return;
             }
 
-
-
             if (TextureManager.instance.TryToHitSomething(newPosition2D, out bool isNutrient)) {
                 if (isNutrient) {
                     movementSpeed *= feedSpeedMultiplier;
@@ -138,11 +136,16 @@ namespace Rootlesnake.Player {
         }
 
         public RootBranch CreateSplit() {
-            float leftAngle = angle + splitAngle;
-            float rightAngle = angle - splitAngle;
+            float direction = UnityRandom.value < 0.5f
+                ? 1
+                : -1;
+            float leftAngle = angle + (splitAngle * direction);
+            float rightAngle = angle - (splitAngle * direction);
             angle = intendedAngle = leftAngle;
             previousAngle = integerAngle - 1;
             movementSpeed *= splitSpeedMultiplier;
+            rotationSpeed = 0;
+            acceleration = 0;
 
             AudioManager.instance.PlayAudio(EffectCue.RootSplit);
             ParticleManager.instance.PlayAudio(EffectCue.RootSplit, m_head.position3D);
