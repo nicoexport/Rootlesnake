@@ -6,6 +6,7 @@ using UnityRandom = UnityEngine.Random;
 namespace Rootlesnake.Player {
     [Serializable]
     sealed class RootBranch : IPlantBranch {
+        const float MIN_STEP = 0.125f;
 
         public bool isAlive { get; private set; }
 
@@ -89,7 +90,6 @@ namespace Rootlesnake.Player {
                 return new Vector3(-sin, cos, 0);
             }
         }
-        public Vector3 velocity => forward * movementSpeed;
 
         Color color => isAlive
             ? root.aliveColor
@@ -101,37 +101,43 @@ namespace Rootlesnake.Player {
             movementSpeed = Mathf.SmoothDamp(movementSpeed, defaultMovementSpeed, ref acceleration, speedSmoothing, float.PositiveInfinity, deltaTime);
             angle = Mathf.SmoothDampAngle(angle, intendedAngle, ref rotationSpeed, rotationSmoothing, maxRotationSpeed, deltaTime);
 
-            var motion = velocity * deltaTime;
+            for (float distance = 0, totalDistance = movementSpeed * deltaTime;
+                distance < totalDistance;
+                distance += MIN_STEP) {
 
-            var newPosition3D = m_head.position3D + motion;
-            var newPosition2D = TextureManager.instance.WorldSpaceToPixelSpace(newPosition3D);
+                float step = Mathf.Min(MIN_STEP, totalDistance - distance);
+                var motion = forward * step;
 
-            if (m_head.position2D == newPosition2D) {
-                // we move, but enough to have to draw or check for collision
-                m_head.position3D = newPosition3D;
-                return;
-            }
+                var newPosition3D = m_head.position3D + motion;
+                var newPosition2D = TextureManager.instance.WorldSpaceToPixelSpace(newPosition3D);
 
-            if (TextureManager.instance.TryToHitSomething(newPosition2D, out bool isNutrient)) {
-                if (isNutrient) {
-                    movementSpeed *= feedSpeedMultiplier;
-                    root.Feed();
-                } else {
-                    isAlive = false;
-                    AudioManager.instance.PlayAudio(EffectCue.RootCollide);
-                    TextureManager.instance.DrawDotPixelSpace(color, newPosition2D);
+                if (m_head.position2D == newPosition2D) {
+                    // we move, but enough to have to draw or check for collision
+                    m_head.position3D = newPosition3D;
                     return;
                 }
-            }
 
-            TextureManager.instance.DrawDotPixelSpace(color, newPosition2D);
+                if (TextureManager.instance.TryToHitSomething(newPosition2D, out bool isNutrient)) {
+                    if (isNutrient) {
+                        movementSpeed *= feedSpeedMultiplier;
+                        root.Feed();
+                    } else {
+                        isAlive = false;
+                        AudioManager.instance.PlayAudio(EffectCue.RootCollide);
+                        TextureManager.instance.DrawDotPixelSpace(color, newPosition2D);
+                        return;
+                    }
+                }
 
-            if (previousAngle == integerAngle) {
-                m_head.position3D += motion;
-            } else {
-                nodeCount++;
-                m_head = m_head.CreateChild(motion);
-                previousAngle = integerAngle;
+                TextureManager.instance.DrawDotPixelSpace(color, newPosition2D);
+
+                if (previousAngle == integerAngle) {
+                    m_head.position3D += motion;
+                } else {
+                    nodeCount++;
+                    m_head = m_head.CreateChild(motion);
+                    previousAngle = integerAngle;
+                }
             }
         }
 
