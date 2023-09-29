@@ -12,5 +12,5 @@ Global Game Jam 2023
 - Nadine Jachman (game design, art)
 - Sofia Haufe (art)
 - Philip (sound design)
-- Pilipp Carl (programming)
+- Philipp Carl (programming)
 - Nico Auerswald (project management, tech art)
